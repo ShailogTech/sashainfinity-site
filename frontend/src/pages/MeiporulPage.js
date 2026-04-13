@@ -97,7 +97,7 @@ export default function MeiporulPage() {
                   <span><i className="fa-solid fa-clock"></i> {c.duration}</span>
                   <span><i className="fa-solid fa-users"></i> {c.students} learners</span>
                 </div>
-                <button className="enroll-btn" data-testid={`ar-enroll-${i}`}>Start Module</button>
+                <Link to={`/courses/${[12,10,9,11,10,9][i]}`} className="enroll-btn" data-testid={`ar-enroll-${i}`}>Start Module</Link>
               </div>
             ))}
           </div>

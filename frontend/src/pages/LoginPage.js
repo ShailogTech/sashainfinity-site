@@ -13,6 +13,14 @@ export default function LoginPage() {
 
   return (
     <div className="sasha-auth-page" data-testid="login-page">
+      {/* Mobile header */}
+      <div className="auth-mobile-header">
+        <Link to="/" className="auth-mobile-logo" data-testid="auth-mobile-logo">
+          <img src="https://sashainfinity.com/wp-content/uploads/2025/06/sasha-logo-small.png" alt="SashaInfinity" />
+        </Link>
+        <p>Future of Education</p>
+      </div>
+
       <div className="auth-container">
         {/* Left - Branding */}
         <div className="auth-branding">
@@ -22,6 +30,12 @@ export default function LoginPage() {
           <div className="auth-brand-content">
             <h2>Welcome to <span>SashaInfinity</span></h2>
             <p>Transform your education with immersive AR/VR learning experiences, personalized paths, and expert guidance.</p>
+            <div className="auth-brand-features">
+              <div><i className="fa-solid fa-check-circle"></i> Immersive AR/VR Learning</div>
+              <div><i className="fa-solid fa-check-circle"></i> Personalized Learning Paths</div>
+              <div><i className="fa-solid fa-check-circle"></i> Expert Tutors & Mentors</div>
+              <div><i className="fa-solid fa-check-circle"></i> Certificate on Completion</div>
+            </div>
             <div className="auth-brand-stats">
               <div><strong>50+</strong><span>Students</span></div>
               <div><strong>70+</strong><span>Lessons</span></div>

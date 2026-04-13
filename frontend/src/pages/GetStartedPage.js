@@ -18,6 +18,14 @@ export default function GetStartedPage() {
 
   return (
     <div className="sasha-auth-page" data-testid="get-started-page">
+      {/* Mobile header */}
+      <div className="auth-mobile-header">
+        <Link to="/" className="auth-mobile-logo" data-testid="register-mobile-logo">
+          <img src="https://sashainfinity.com/wp-content/uploads/2025/06/sasha-logo-small.png" alt="SashaInfinity" />
+        </Link>
+        <p>Future of Education</p>
+      </div>
+
       <div className="auth-container">
         {/* Left - Branding */}
         <div className="auth-branding register-branding">
