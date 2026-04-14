@@ -377,9 +377,9 @@ function CTASection() {
 
 function BlogPreviewSection() {
   const blogs = [
-    { title: "Modulus of a Complex Number", tag: "Mathematics", date: "Nov 21, 2025", gradient: "linear-gradient(135deg, #667EEA, #764BA2)", icon: "fa-solid fa-infinity" },
-    { title: "Conjugate of a Complex Number", tag: "Mathematics", date: "Nov 21, 2025", gradient: "linear-gradient(135deg, #F093FB, #F5576C)", icon: "fa-solid fa-right-left" },
-    { title: "Basic Algebraic Properties of Complex Numbers", tag: "Mathematics", date: "Nov 21, 2025", gradient: "linear-gradient(135deg, #4FACFE, #00F2FE)", icon: "fa-solid fa-superscript" },
+    { slug: "modulus-of-a-complex-number", title: "Modulus of a Complex Number", tag: "Mathematics", date: "Nov 21, 2025", gradient: "linear-gradient(135deg, #667EEA, #764BA2)", icon: "fa-solid fa-infinity" },
+    { slug: "conjugate-of-a-complex-number", title: "Conjugate of a Complex Number", tag: "Mathematics", date: "Nov 21, 2025", gradient: "linear-gradient(135deg, #F093FB, #F5576C)", icon: "fa-solid fa-right-left" },
+    { slug: "basic-algebraic-properties-of-complex-numbers", title: "Basic Algebraic Properties of Complex Numbers", tag: "Mathematics", date: "Nov 21, 2025", gradient: "linear-gradient(135deg, #4FACFE, #00F2FE)", icon: "fa-solid fa-superscript" },
   ];
 
   return (
@@ -391,7 +391,7 @@ function BlogPreviewSection() {
         </div>
         <div className="blog-grid">
           {blogs.map((b, i) => (
-            <Link to="/blog" className="blog-card" key={i} data-testid={`blog-preview-${i}`}>
+            <Link to={`/blog/${b.slug}`} className="blog-card" key={i} data-testid={`blog-preview-${i}`}>
               <div className="blog-card-thumb" style={{ background: b.gradient }}><i className={b.icon}></i></div>
               <div className="blog-card-body">
                 <span className="blog-card-tag">{b.tag}</span>

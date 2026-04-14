@@ -15,13 +15,13 @@ export default function SplashScreen({ onComplete }) {
   useEffect(() => {
     let val = 0;
     const interval = setInterval(() => {
-      val += Math.random() * 8 + 2;
+      val += Math.random() * 15 + 5;
       if (val >= 100) {
         val = 100;
         clearInterval(interval);
       }
       setCounter(Math.min(100, Math.round(val)));
-    }, 60);
+    }, 40);
 
     // Stagger chars
     const charTimeout = setTimeout(() => {
@@ -71,11 +71,11 @@ export default function SplashScreen({ onComplete }) {
     // Complete after animation
     const completeTimeout = setTimeout(() => {
       if (containerRef.current) {
-        containerRef.current.style.transition = "opacity 0.8s ease";
+        containerRef.current.style.transition = "opacity 0.6s ease";
         containerRef.current.style.opacity = "0";
       }
-      setTimeout(() => onComplete(), 900);
-    }, 3500);
+      setTimeout(() => onComplete(), 700);
+    }, 2400);
 
     return () => {
       clearInterval(interval);

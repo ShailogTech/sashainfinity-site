@@ -10,6 +10,8 @@ import ContactPage from "@/pages/ContactPage";
 import MeiporulPage from "@/pages/MeiporulPage";
 import LoginPage from "@/pages/LoginPage";
 import GetStartedPage from "@/pages/GetStartedPage";
+import CourseDetailPage from "@/pages/CourseDetailPage";
+import BlogDetailPage from "@/pages/BlogDetailPage";
 import SplashScreen from "@/components/SplashScreen";
 
 function ScrollToTop() {
@@ -32,7 +34,9 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/courses/:id" element={<CourseDetailPage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/meiporul-ar" element={<MeiporulPage />} />
         <Route path="/login" element={<LoginPage />} />
