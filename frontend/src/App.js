@@ -12,6 +12,10 @@ import LoginPage from "@/pages/LoginPage";
 import GetStartedPage from "@/pages/GetStartedPage";
 import CourseDetailPage from "@/pages/CourseDetailPage";
 import BlogDetailPage from "@/pages/BlogDetailPage";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminCourses from "@/pages/admin/AdminCourses";
+import AdminUsers from "@/pages/admin/AdminUsers";
+import AdminLayout from "@/pages/admin/AdminLayout";
 import SplashScreen from "@/components/SplashScreen";
 
 function ScrollToTop() {
@@ -41,6 +45,11 @@ function AppContent() {
         <Route path="/meiporul-ar" element={<MeiporulPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/get-started" element={<GetStartedPage />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="courses" element={<AdminCourses />} />
+          <Route path="users" element={<AdminUsers />} />
+        </Route>
       </Routes>
       {!isAuth && <Footer />}
     </>

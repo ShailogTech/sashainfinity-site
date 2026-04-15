@@ -1,0 +1,104 @@
+{
+  "folders": [
+    {
+      "name": "SashaInfinity Emergent",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "javascript.preferences.importModuleSpecifier": "relative",
+
+    // Python settings for backend
+    "python.defaultInterpreterPath": "${workspaceFolder}/backend/venv/bin/python",
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.analysis.autoImportCompletions": true,
+
+    // Path aliases for @ imports
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+
+    // Exclude folders from search
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/coverage": true,
+      "**/build": true,
+      "**/dist": true,
+      "**/archive": true,
+      "**/temp": true
+    },
+
+    // File watching exclusions
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/coverage/**": true,
+      "**/build/**": true,
+      "**/dist/**": true
+    },
+
+    // Workspace-specific外观
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+
+    // Git configuration
+    "git.enabled": true,
+    "git.autofetch": true,
+
+    // Live Share configuration
+    "liveshare.account": "${env:VSLS_ACCOUNT}",
+    "liveshare.diagnosticMode": "compact",
+
+    // Terminal configuration
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.cwd": "${workspaceFolder}"
+  },
+  "extensions": {
+    "recommendations": [
+      // Frontend development
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "dsznajder.es7-react-js-snippets",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-json",
+
+      // Backend development
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "ms-python.black-formatter",
+      "ms-python.flake8",
+      "ms-python.mypy",
+
+      // Database
+      "mongodb.mongodb-vscode",
+
+      // Collaboration
+      "ms-vsliveshare.vsliveshare",
+      "eamodio.gitlens",
+
+      // General development
+      "pkief.material-icon-theme",
+      "ms-vscode-remote.remote-containers",
+      "ms-vscode.live-server",
+      "streetsidesoftware.code-spell-checker",
+      "usernamehw.errorlens",
+      "wakatime.vscode-wakatime"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0"
+  },
+  "tasks": {
+    "version": "2.0.0"
+  }
+}
