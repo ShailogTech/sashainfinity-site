@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import ScrollStack, { ScrollStackItem } from "../components/ScrollStack";
 
 function HeroSection({ canvasRef }) {
   return (
@@ -128,25 +129,36 @@ function ScrollStackSection() {
 
   return (
     <section className="sasha-scroll-stack-section" data-testid="scroll-stack-section">
-      <div className="scroll-stack-inner">
-        <div className="scroll-stack-header">
-          <div className="section-label" style={{ justifyContent: "center" }}>Why SashaInfinity</div>
-          <h2>What Makes Us Different</h2>
-          <p>Discover how we're transforming education with cutting-edge technology and personalized learning.</p>
-        </div>
-        {cards.map((card, i) => (
-          <div className="scroll-stack-card" key={i} data-testid={`scroll-card-${i}`}>
-            <div className="card-icon"><i className={card.icon}></i></div>
-            <h3>{card.title}</h3>
-            <p>{card.desc}</p>
-            <div className="card-stats">
-              {card.stats.map((s, j) => (
-                <div key={j}><div className="card-stat-num">{s.n}</div><div className="card-stat-label">{s.l}</div></div>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div className="scroll-stack-header">
+        <div className="section-label" style={{ justifyContent: "center" }}>Why SashaInfinity</div>
+        <h2>What Makes Us Different</h2>
+        <p>Discover how we're transforming education with cutting-edge technology and personalized learning.</p>
       </div>
+      <ScrollStack
+        className="window-scroll sasha-stack"
+        useWindowScroll
+        itemDistance={80}
+        itemScale={0.03}
+        itemStackDistance={20}
+        baseScale={0.88}
+        stackPosition="18%"
+        scaleEndPosition="8%"
+      >
+        {cards.map((card, i) => (
+          <ScrollStackItem key={i}>
+            <div data-testid={`scroll-card-${i}`} className="scroll-stack-card-content">
+              <div className="card-icon"><i className={card.icon}></i></div>
+              <h3>{card.title}</h3>
+              <p>{card.desc}</p>
+              <div className="card-stats">
+                {card.stats.map((s, j) => (
+                  <div key={j}><div className="card-stat-num">{s.n}</div><div className="card-stat-label">{s.l}</div></div>
+                ))}
+              </div>
+            </div>
+          </ScrollStackItem>
+        ))}
+      </ScrollStack>
     </section>
   );
 }

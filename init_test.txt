@@ -1,2 +1,0 @@
-Initialization test file
-Created on: $(date)

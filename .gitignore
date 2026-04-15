@@ -1,10 +1,15 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ==================================================
+# SashaInfinity Emergent - .gitignore
+# ==================================================
 
-# IDE and editors
+# ---------- IDE and Editors ----------
 .idea/
 .vscode/
+*.swp
+*.swo
+*~
 
-# Dependencies
+# ---------- Dependencies ----------
 node_modules/
 /node_modules
 /.pnp
@@ -16,55 +21,122 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# Testing
+# ---------- Testing ----------
 /coverage
+tests/reports/
+*.coveragexml
 
-# Next.js
-/.next/
-/out/
-next-env.d.ts
-*.tsbuildinfo
-
-# Production builds
+# ---------- Production Builds ----------
 /build
 dist/
-dist
+.next/
+out/
+*.tsbuildinfo
 
-# Environment files (comprehensive coverage)
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
 
+# ---------- Environment & Credentials ----------
+.env
+.env.*
+*.env
+.env.local
+*.pem
+*.key
+*.credentials
+credentials.json
 *token.json*
-*credentials.json*
+secrets/
 
-# Logs and debug files
+# ---------- Logs & Debug ----------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 dump.rdb
+logs/
+*.log
 
-# System files
+# ---------- System Files ----------
 .DS_Store
-*.pem
+Thumbs.db
+*.bak
+*.tmp
+*.temp
 
-# Python
-__pycache__/
-*pyc*
-venv/
-.venv/
+# ---------- AI/CLI Tools (Development) ----------
+.claude/
+.cursor/
+.cline/
+.continue/
+.codex/
+.adal/
+.agent/
+.agents/
+.aide/
+.alex/
+.ara/
+.bb/
+.codebuddy/
+.codestory/
+.commandcode/
+.crush/
+.deepagents/
+.factory/
+.gemini/
+.goose/
+.helix/
+.kilocode/
+.kiro/
+.lingma/
+.mcpjam/
+.meekia/
+.mux/
+.neovate/
+.opencode/
+.openhands/
+.pearai/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.ruler/
+.sourcegraph/
+.trae/
+.void/
+.windsurf/
+.zai/
+.zed/
+.zencoder/
 
-# Development tools
+# ---------- Development Tools ----------
 chainlit.md
 .chainlit
 .ipynb_checkpoints/
 .ac
+.emergent/
 
-# Deployment
+# ---------- Deployment ----------
 .vercel
+.netlify
 
-# Data and databases
+# ---------- Database & Data ----------
+*.sql
+*.sqlite
+*.db
 agenthub/agents/youtube/db
 
-# Archive files and large assets
+# ---------- Archives & Large Files ----------
+archive/
 **/*.zip
 **/*.tar.gz
 **/*.tar
@@ -72,51 +144,16 @@ agenthub/agents/youtube/db
 *.pack
 *.deb
 *.dylib
+backup*.sql
 
-# Build caches
+# ---------- Build Caches ----------
 .cache/
+.parcel-cache/
+.vite/
 
-memory/test_credentials.md
-
-# Mobile development
-android-sdk/frontend/node_modules/.cache/default-development/3.pack
-frontend/node_modules/.cache/default-development/0.pack
-frontend/node_modules/.cache/default-development/3.pack
--e 
-# Environment and credential files
-.env
-.env.*
-*.env
-credentials.json
-*.pem
-*.key
-.credentials
--e 
-# Environment and credential files
-.env
-.env.*
-*.env
-credentials.json
-*.pem
-*.key
-.credentials
-frontend/node_modules/.cache/default-development/6.pack
--e 
-# Environment and credential files
-.env
-.env.*
-*.env
-credentials.json
-*.pem
-*.key
-.credentials
-frontend/node_modules/.cache/default-development/4.pack
--e 
-# Environment and credential files
-.env
-.env.*
-*.env
-credentials.json
-*.pem
-*.key
-.credentials
+# ---------- Temporary Files ----------
+temp/
+tmp/
+*.tmp
+init_test.txt
+test_location.txt
