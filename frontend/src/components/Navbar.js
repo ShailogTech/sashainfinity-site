@@ -62,7 +62,6 @@ export default function Navbar() {
         </ul>
 
         <div className="sasha-nav-cta">
-          <Link to="/login" className="btn-ghost" data-testid="nav-login-btn">Log In</Link>
           <Link to="/get-started" className="btn-primary-nav" data-testid="nav-get-started-btn">Get Started</Link>
         </div>
 
@@ -80,8 +79,6 @@ export default function Navbar() {
             {link.label}
           </Link>
         ))}
-        <Link to="/login" onClick={() => { setMobileOpen(false); document.body.style.overflow = ""; }}
-          style={{ color: "#f4911a" }} data-testid="mobile-login-link">Log In</Link>
         <Link to="/get-started" onClick={() => { setMobileOpen(false); document.body.style.overflow = ""; }}
           className="mobile-get-started" data-testid="mobile-get-started-link">Get Started</Link>
       </div>

@@ -16,7 +16,10 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminCourses from "@/pages/admin/AdminCourses";
 import AdminUsers from "@/pages/admin/AdminUsers";
 import AdminLayout from "@/pages/admin/AdminLayout";
+import AdminPlaceholder from "@/pages/admin/AdminPlaceholder";
+import AdminSettings from "@/pages/admin/AdminSettings";
 import SplashScreen from "@/components/SplashScreen";
+import RoamingMascot from "@/components/RoamingMascot";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -30,6 +33,7 @@ function AppContent() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isAuth = location.pathname === "/login" || location.pathname === "/get-started";
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
     <>
@@ -49,9 +53,13 @@ function AppContent() {
           <Route index element={<AdminDashboard />} />
           <Route path="courses" element={<AdminCourses />} />
           <Route path="users" element={<AdminUsers />} />
+          <Route path="blog" element={<AdminPlaceholder title="Blog" description="Manage blog posts, drafts, and publishing." />} />
+          <Route path="analytics" element={<AdminPlaceholder title="Analytics" description="Detailed reports on users, courses, and revenue." />} />
+          <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>
-      {!isAuth && <Footer />}
+      {!isAuth && !isAdmin && <Footer />}
+      {!isAuth && !isHome && <RoamingMascot />}
     </>
   );
 }

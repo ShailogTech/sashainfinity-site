@@ -22,7 +22,7 @@ const AdminCourses = () => {
             title: "React Mastery",
             description: "Complete React development course",
             instructor: "John Doe",
-            price: 99.99,
+            price: 7999,
             enrolled: 245,
             status: "published",
             thumbnail: "🎯",
@@ -32,7 +32,7 @@ const AdminCourses = () => {
             title: "Python Basics",
             description: "Introduction to Python programming",
             instructor: "Jane Smith",
-            price: 79.99,
+            price: 6499,
             enrolled: 189,
             status: "published",
             thumbnail: "🐍",
@@ -42,7 +42,7 @@ const AdminCourses = () => {
             title: "Web Development Bootcamp",
             description: "Full-stack web development",
             instructor: "Mike Johnson",
-            price: 149.99,
+            price: 11999,
             enrolled: 412,
             status: "draft",
             thumbnail: "💻",
@@ -167,7 +167,7 @@ const AdminCourses = () => {
                   </td>
                   <td className="px-6 py-4 text-gray-800">{course.instructor}</td>
                   <td className="px-6 py-4 font-medium text-gray-800">
-                    ${course.price}
+                    {Number(course.price).toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 })}
                   </td>
                   <td className="px-6 py-4 text-gray-800">{course.enrolled}</td>
                   <td className="px-6 py-4">{getStatusBadge(course.status)}</td>

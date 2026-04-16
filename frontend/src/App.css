@@ -21,6 +21,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: auto; }
 
+
 .sasha-app {
   font-family: 'Inter', sans-serif;
   background: var(--sasha-bg);
@@ -48,16 +49,17 @@ a { text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #f3f4f6;
   transition: all 0.5s var(--sasha-ease);
 }
 
 .sasha-nav.scrolled {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(243, 244, 246, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   padding: 12px 48px;
   border-bottom: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
 }
 
 .sasha-nav-logo {

@@ -34,7 +34,7 @@ const AdminDashboard = () => {
             { id: 2, type: "course", message: "Course 'React Mastery' published", time: "15 minutes ago" },
             { id: 3, type: "blog", message: "Blog post '10 Tips for Learning' published", time: "1 hour ago" },
             { id: 4, type: "user", message: "User Sarah Smith enrolled in 'Python Basics'", time: "2 hours ago" },
-            { id: 5, type: "revenue", message: "New subscription: $49.99 from Mike Johnson", time: "3 hours ago" },
+            { id: 5, type: "revenue", message: "New subscription: ₹4,199 from Mike Johnson", time: "3 hours ago" },
           ]);
           setLoading(false);
         }, 1000);
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
     {
       title: "Total Users",
       value: stats.totalUsers,
-      icon: "👥",
+      icon: "",
       color: "bg-blue-500",
       trend: "+12.5%",
       trendUp: true,
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     {
       title: "Total Courses",
       value: stats.totalCourses,
-      icon: "📚",
+      icon: "",
       color: "bg-green-500",
       trend: "+3",
       trendUp: true,
@@ -67,7 +67,7 @@ const AdminDashboard = () => {
     {
       title: "Blog Posts",
       value: stats.totalBlogPosts,
-      icon: "✍️",
+      icon: "",
       color: "bg-purple-500",
       trend: "+8",
       trendUp: true,
@@ -75,15 +75,15 @@ const AdminDashboard = () => {
     {
       title: "Active Users",
       value: stats.activeUsers,
-      icon: "🔥",
+      icon: "",
       color: "bg-orange-500",
       trend: "+5.2%",
       trendUp: true,
     },
     {
       title: "Revenue",
-      value: `$${stats.revenue.toLocaleString()}`,
-      icon: "💰",
+      value: stats.revenue.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }),
+      icon: "",
       color: "bg-emerald-500",
       trend: "+18.3%",
       trendUp: true,
@@ -93,15 +93,15 @@ const AdminDashboard = () => {
   const getActivityIcon = (type) => {
     switch (type) {
       case "user":
-        return "👤";
+        return "";
       case "course":
-        return "📚";
+        return "";
       case "blog":
-        return "✍️";
+        return "";
       case "revenue":
-        return "💰";
+        return "";
       default:
-        return "📌";
+        return "";
     }
   };
 
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
         {statCards.map((stat, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-200 hover:shadow-md transition-shadow"
+            className="bg-white rounded-xl p-6 border-l-4 border-gray-200 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -150,7 +150,7 @@ const AdminDashboard = () => {
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activity */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">
             Recent Activity
           </h3>
@@ -171,32 +171,32 @@ const AdminDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Quick Actions</h3>
           <div className="grid grid-cols-1 gap-3">
             <button className="flex items-center gap-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl">📚</span>
+              <span className="text-2xl"></span>
               <div>
                 <p className="font-medium text-gray-800">Add New Course</p>
                 <p className="text-sm text-gray-600">Create a new course</p>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl">👥</span>
+              <span className="text-2xl"></span>
               <div>
                 <p className="font-medium text-gray-800">Manage Users</p>
                 <p className="text-sm text-gray-600">View and manage users</p>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl">✍️</span>
+              <span className="text-2xl"></span>
               <div>
                 <p className="font-medium text-gray-800">Write Blog Post</p>
                 <p className="text-sm text-gray-600">Create new blog content</p>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl">📊</span>
+              <span className="text-2xl"></span>
               <div>
                 <p className="font-medium text-gray-800">View Analytics</p>
                 <p className="text-sm text-gray-600">See detailed reports</p>
@@ -209,11 +209,11 @@ const AdminDashboard = () => {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* User Growth Chart */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">User Growth</h3>
           <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
             <div className="text-center text-gray-500">
-              <p className="mb-2">📈</p>
+              <p className="mb-2"></p>
               <p>Chart visualization would go here</p>
               <p className="text-sm">Users over time</p>
             </div>
@@ -221,11 +221,11 @@ const AdminDashboard = () => {
         </div>
 
         {/* Revenue Chart */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Revenue Overview</h3>
           <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
             <div className="text-center text-gray-500">
-              <p className="mb-2">💰</p>
+              <p className="mb-2"></p>
               <p>Chart visualization would go here</p>
               <p className="text-sm">Revenue over time</p>
             </div>
