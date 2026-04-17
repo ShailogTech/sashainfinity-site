@@ -3,6 +3,25 @@ import {
   IconSearch, IconPlus, IconEdit, IconTrash, IconDownload,
   IconFilter, IconSortAscending,
 } from "@tabler/icons-react";
+import { BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
+const CHART_COLORS = ["#667EEA", "#43e97b", "#f4911a", "#f5576c", "#764BA2", "#4facfe", "#38f9d7"];
+
+// Chart data for each section
+const PAGE_CHARTS = {
+  categories: { type: "bar", data: [{ n: "Web Dev", v: 12 }, { n: "Data Sci", v: 8 }, { n: "Mobile", v: 6 }, { n: "UI/UX", v: 5 }, { n: "DevOps", v: 4 }, { n: "ML", v: 7 }, { n: "Cyber", v: 3 }], label: "Courses per Category" },
+  tags: { type: "bar", data: [{ n: "JS", v: 12 }, { n: "React", v: 8 }, { n: "CSS", v: 7 }, { n: "Python", v: 6 }, { n: "Node", v: 5 }, { n: "TS", v: 4 }, { n: "SQL", v: 3 }], label: "Tag Usage" },
+  lessons: { type: "pie", data: [{ n: "Video", v: 5 }, { n: "Text", v: 1 }, { n: "Published", v: 5 }, { n: "Draft", v: 2 }], label: "Lesson Breakdown" },
+  quizzes: { type: "bar", data: [{ n: "Hooks", v: 78 }, { n: "Python", v: 82 }, { n: "HTML", v: 74 }, { n: "JS", v: 71 }, { n: "State", v: 85 }], label: "Avg Score by Quiz (%)" },
+  students: { type: "area", data: [{ n: "Jan", v: 120 }, { n: "Feb", v: 145 }, { n: "Mar", v: 180 }, { n: "Apr", v: 210 }, { n: "May", v: 248 }, { n: "Jun", v: 290 }], label: "Student Growth" },
+  tutors: { type: "bar", data: [{ n: "John", v: 4.8 }, { n: "Jane", v: 4.6 }, { n: "Mike", v: 4.9 }, { n: "Sarah", v: 4.5 }], label: "Tutor Ratings" },
+  enrollments: { type: "area", data: [{ n: "Jan", v: 45 }, { n: "Feb", v: 62 }, { n: "Mar", v: 78 }, { n: "Apr", v: 95 }, { n: "May", v: 110 }, { n: "Jun", v: 130 }], label: "Monthly Enrollments" },
+  analytics: { type: "area", data: [{ n: "W1", v: 820 }, { n: "W2", v: 890 }, { n: "W3", v: 960 }, { n: "W4", v: 1020 }, { n: "W5", v: 1100 }, { n: "W6", v: 1180 }], label: "Weekly Active Users" },
+  orders: { type: "bar", data: [{ n: "Jan", v: 28 }, { n: "Feb", v: 35 }, { n: "Mar", v: 42 }, { n: "Apr", v: 38 }, { n: "May", v: 51 }, { n: "Jun", v: 48 }], label: "Orders per Month" },
+  coupons: { type: "pie", data: [{ n: "WELCOME20", v: 145 }, { n: "FLAT500", v: 89 }, { n: "SUMMER25", v: 0 }, { n: "EARLYBIRD", v: 50 }], label: "Coupon Usage" },
+  certificates: { type: "pie", data: [{ n: "Issued", v: 2 }, { n: "Pending", v: 1 }], label: "Certificate Status" },
+  blog: { type: "bar", data: [{ n: "Tutorial", v: 1240 }, { n: "Opinion", v: 890 }, { n: "Guide", v: 0 }, { n: "Design", v: 560 }, { n: "Career", v: 2100 }], label: "Views by Category" },
+};
 
 // Mock data configs for each admin section
 const PAGE_CONFIGS = {
@@ -201,6 +220,51 @@ export default function AdminDataPage({ pageKey }) {
 
       {/* Summary */}
       <p className="text-sm text-gray-500">{filteredData.length} {config.title.toLowerCase()} found</p>
+
+      {/* Chart */}
+      {PAGE_CHARTS[pageKey] && (
+        <div className="glass-card rounded-xl p-5">
+          <h4 className="text-sm font-bold text-gray-700 mb-3">{PAGE_CHARTS[pageKey].label}</h4>
+          <div className="h-48">
+            <ResponsiveContainer width="100%" height="100%">
+              {PAGE_CHARTS[pageKey].type === "bar" ? (
+                <BarChart data={PAGE_CHARTS[pageKey].data}>
+                  <XAxis dataKey="n" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                  <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)", fontSize: 12 }} />
+                  <Bar dataKey="v" radius={[6, 6, 0, 0]}>
+                    {PAGE_CHARTS[pageKey].data.map((_, i) => (
+                      <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              ) : PAGE_CHARTS[pageKey].type === "area" ? (
+                <AreaChart data={PAGE_CHARTS[pageKey].data}>
+                  <defs>
+                    <linearGradient id={`grad-${pageKey}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#667EEA" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#667EEA" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <XAxis dataKey="n" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#9ca3af" }} />
+                  <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)", fontSize: 12 }} />
+                  <Area type="monotone" dataKey="v" stroke="#667EEA" strokeWidth={2.5} fill={`url(#grad-${pageKey})`} />
+                </AreaChart>
+              ) : (
+                <PieChart>
+                  <Pie data={PAGE_CHARTS[pageKey].data} cx="50%" cy="50%" outerRadius={70} innerRadius={40} paddingAngle={3} dataKey="v" nameKey="n" label={({ n, percent }) => `${n} ${(percent * 100).toFixed(0)}%`} style={{ fontSize: 11 }}>
+                    {PAGE_CHARTS[pageKey].data.map((_, i) => (
+                      <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)", fontSize: 12 }} />
+                </PieChart>
+              )}
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
 
       {/* Table */}
       <div className="glass-card rounded-xl overflow-hidden">

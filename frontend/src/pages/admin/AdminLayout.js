@@ -45,7 +45,7 @@ const AdminLayout = () => {
         }}
       />
 
-      <div className="relative z-10 shrink-0">
+      <div className="relative z-10 shrink-0 sticky top-0 h-screen overflow-y-auto">
         <AdminSidebar />
       </div>
 
