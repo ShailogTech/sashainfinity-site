@@ -10,6 +10,28 @@ const features = [
   { icon: "fa-solid fa-award", title: "Certification", desc: "Earn verified certificates upon completing AR learning modules." },
 ];
 
+const arGallery = [
+  { title: "Interactive VR Demo", color: "#667EEA" }, { title: "Pythagorean Theorem", color: "#43e97b" },
+  { title: "Rhombic Dodecahedron", color: "#f4911a" }, { title: "Ordinary Helicoid", color: "#f5576c" },
+  { title: "Sierpinski Triangle", color: "#764BA2" }, { title: "Costas Minimal Surface", color: "#4facfe" },
+  { title: "Cross Product", color: "#43e97b" }, { title: "Divergence", color: "#667EEA" },
+  { title: "Dot Product", color: "#f4911a" }, { title: "Dinis Surface", color: "#f5576c" },
+  { title: "Riemann Surfaces", color: "#764BA2" }, { title: "Barth Sextic", color: "#4facfe" },
+  { title: "Alexander Horned Sphere", color: "#43e97b" }, { title: "Mobius Strip", color: "#667EEA" },
+  { title: "Oloid", color: "#f4911a" }, { title: "Sphericon", color: "#f5576c" },
+  { title: "Pascal Pyramid", color: "#764BA2" }, { title: "Hyperboloid", color: "#4facfe" },
+  { title: "Hyperbolic Paraboloid", color: "#43e97b" }, { title: "Extruded Sine Waves", color: "#667EEA" },
+  { title: "Catenoide", color: "#f4911a" }, { title: "Catenoid", color: "#f5576c" },
+  { title: "3D Lattice", color: "#764BA2" }, { title: "Stereomatria", color: "#4facfe" },
+  { title: "Saddle Wires", color: "#43e97b" }, { title: "Menger Sponge", color: "#667EEA" },
+  { title: "Boys Surface", color: "#f4911a" }, { title: "Borromean Rings", color: "#f5576c" },
+  { title: "Gyroid", color: "#764BA2" }, { title: "Klein Bottle", color: "#4facfe" },
+  { title: "Julia Quaternion", color: "#43e97b" }, { title: "Enneper Surface", color: "#667EEA" },
+  { title: "Dodecahedron", color: "#f4911a" }, { title: "Snub Cube", color: "#f5576c" },
+  { title: "Penrose Triangle", color: "#764BA2" }, { title: "Scherks Minimal Surface", color: "#4facfe" },
+  { title: "Octahedron", color: "#43e97b" }, { title: "3D Hilbert Curve", color: "#667EEA" },
+];
+
 const arCourses = [
   { title: "Trigonometry in 3D", level: "Beginner", duration: "45 min", students: 120, color: "#43e97b" },
   { title: "Algebra Visualized", level: "Intermediate", duration: "60 min", students: 85, color: "#667EEA" },
@@ -21,7 +43,7 @@ const arCourses = [
 
 export default function MeiporulPage() {
   const [arModal, setArModal] = useState(null);
-  const [arView, setArView] = useState("qr");
+  const [arView, setArView] = useState("3d");
 
   return (
     <div className="sasha-page meiporul-page" data-testid="meiporul-page">
@@ -119,14 +141,14 @@ export default function MeiporulPage() {
 
       {/* AR Launch Modal */}
       {arModal && (
-        <div className="ar-modal-overlay" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }} onClick={() => { setArModal(null); setArView("qr"); }}>
+        <div className="ar-modal-overlay" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }} onClick={() => { setArModal(null); setArView("3d"); }}>
           <div className="ar-modal-content" style={{ background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderRadius: 24, padding: 40, maxWidth: 460, width: "90%", textAlign: "center", border: "1px solid rgba(255,255,255,0.3)", boxShadow: "0 24px 80px rgba(0,0,0,0.15)" }} onClick={e => e.stopPropagation()}>
             <h3 style={{ fontSize: 22, fontWeight: 800, color: "#1a1a2e", marginBottom: 4 }}>{arModal.title}</h3>
             <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 20 }}>{arModal.level} · {arModal.duration}</p>
 
             {/* Toggle Tabs */}
             <div style={{ display: "flex", gap: 0, background: "#f3f4f6", borderRadius: 10, padding: 3, marginBottom: 20 }}>
-              <button onClick={() => setArView("qr")} style={{ flex: 1, padding: "8px 16px", borderRadius: 8, border: "none", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif", background: arView === "qr" ? "#fff" : "transparent", color: arView === "qr" ? "#1a1a2e" : "#9ca3af", boxShadow: arView === "qr" ? "0 2px 8px rgba(0,0,0,0.08)" : "none", transition: "all 0.2s" }}>
+              <button onClick={() => setArView("3d")} style={{ flex: 1, padding: "8px 16px", borderRadius: 8, border: "none", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif", background: arView === "qr" ? "#fff" : "transparent", color: arView === "qr" ? "#1a1a2e" : "#9ca3af", boxShadow: arView === "qr" ? "0 2px 8px rgba(0,0,0,0.08)" : "none", transition: "all 0.2s" }}>
                 <i className="fa-solid fa-qrcode" style={{ marginRight: 6 }}></i> QR Code
               </button>
               <button onClick={() => setArView("3d")} style={{ flex: 1, padding: "8px 16px", borderRadius: 8, border: "none", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif", background: arView === "3d" ? "#fff" : "transparent", color: arView === "3d" ? "#1a1a2e" : "#9ca3af", boxShadow: arView === "3d" ? "0 2px 8px rgba(0,0,0,0.08)" : "none", transition: "all 0.2s" }}>
@@ -166,12 +188,39 @@ export default function MeiporulPage() {
             )}
 
             <div style={{ display: "flex", gap: 12 }}>
-              <button onClick={() => { setArModal(null); setArView("qr"); }} style={{ flex: 1, padding: "12px 20px", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 12, background: "transparent", fontSize: 14, fontWeight: 600, cursor: "pointer", color: "#6b7280", fontFamily: "Inter, sans-serif" }}>Close</button>
+              <button onClick={() => { setArModal(null); setArView("3d"); }} style={{ flex: 1, padding: "12px 20px", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 12, background: "transparent", fontSize: 14, fontWeight: 600, cursor: "pointer", color: "#6b7280", fontFamily: "Inter, sans-serif" }}>Close</button>
               <button style={{ flex: 1, padding: "12px 20px", border: "none", borderRadius: 12, background: "#f4911a", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif" }}>Launch AR</button>
             </div>
           </div>
         </div>
       )}
+
+      {/* AR 3D Models Gallery */}
+      <section style={{ padding: "80px 0", background: "#fafafa" }}>
+        <div className="sasha-container">
+          <div className="section-header">
+            <div className="section-label" style={{ justifyContent: "center" }}>Gallery</div>
+            <h2>Meiporul AR Gallery</h2>
+            <p>{arGallery.length} Interactive 3D Models — View in AR on your phone</p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 16 }}>
+            {arGallery.map((model, i) => (
+              <div key={i} className="ar-course-card" style={{ cursor: "pointer", padding: 0, overflow: "hidden" }}
+                onClick={() => { setArModal({ ...model, level: "AR Ready", duration: "Interactive" }); setArView("3d"); }}>
+                <div style={{ height: 120, background: `linear-gradient(135deg, ${model.color}15, ${model.color}05)`, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke={model.color} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                  </svg>
+                  <div style={{ position: "absolute", top: 8, right: 8, background: `${model.color}18`, borderRadius: 6, padding: "2px 8px", fontSize: 9, fontWeight: 700, color: model.color, textTransform: "uppercase", letterSpacing: 0.5 }}>AR Ready</div>
+                </div>
+                <div style={{ padding: "12px 14px" }}>
+                  <p style={{ fontSize: 13, fontWeight: 700, color: "#1a1a2e", lineHeight: 1.3 }}>{model.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section style={{ padding: "80px 0", background: "#fafafa" }}>

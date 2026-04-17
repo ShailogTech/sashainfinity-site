@@ -29,20 +29,31 @@ export default function AdminSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const links = [
-    { label: "Dashboard", href: "/admin", icon: <IconBrandTabler className={ICON_CLASS} /> },
+  const courseLinks = [
     { label: "All Courses", href: "/admin/courses", icon: <IconBookUpload className={ICON_CLASS} /> },
     { label: "Categories", href: "/admin/categories", icon: <IconCategory className={ICON_CLASS} /> },
     { label: "Tags", href: "/admin/tags", icon: <IconTags className={ICON_CLASS} /> },
+  ];
+
+  const contentLinks = [
     { label: "Lessons", href: "/admin/lessons", icon: <IconNotebook className={ICON_CLASS} /> },
     { label: "Quizzes", href: "/admin/quizzes", icon: <IconQuestionMark className={ICON_CLASS} /> },
+  ];
+
+  const peopleLinks = [
     { label: "Students", href: "/admin/students", icon: <IconUsers className={ICON_CLASS} /> },
     { label: "Tutors", href: "/admin/tutors", icon: <IconChalkboard className={ICON_CLASS} /> },
     { label: "Enrollments", href: "/admin/enrollments", icon: <IconListDetails className={ICON_CLASS} /> },
+  ];
+
+  const businessLinks = [
     { label: "Analytics", href: "/admin/analytics", icon: <IconChartBar className={ICON_CLASS} /> },
     { label: "Orders", href: "/admin/orders", icon: <IconShoppingCart className={ICON_CLASS} /> },
     { label: "Coupons", href: "/admin/coupons", icon: <IconTicket className={ICON_CLASS} /> },
     { label: "Certificates", href: "/admin/certificates", icon: <IconCertificate className={ICON_CLASS} /> },
+  ];
+
+  const systemLinks = [
     { label: "Blog", href: "/admin/blog", icon: <IconEdit className={ICON_CLASS} /> },
     { label: "Settings", href: "/admin/settings", icon: <IconSettings className={ICON_CLASS} /> },
     { label: "View Site", href: "/", icon: <IconWorld className={ICON_CLASS} /> },
@@ -59,14 +70,41 @@ export default function AdminSidebar() {
       <SidebarBody className="justify-between gap-10">
         <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
           {open ? <Logo /> : <LogoIcon />}
-          <div className="mt-8 flex flex-col gap-2">
-            {links.map((link, idx) => (
-              <SidebarLink
-                key={idx}
-                link={link}
-                onClick={() => navigate(link.href)}
-                className={isActive(link.href) ? "text-indigo-700 font-semibold" : ""}
-              />
+          <div className="mt-8 flex flex-col gap-1" style={{ overflowY: "auto", flex: 1 }}>
+            <SidebarLink
+              link={{ label: "Dashboard", href: "/admin", icon: <IconBrandTabler className={ICON_CLASS} /> }}
+              onClick={() => navigate("/admin")}
+              className={isActive("/admin") ? "text-indigo-700 font-semibold" : ""}
+            />
+            {open && <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-4 mb-1 px-3">Courses</p>}
+            {!open && <div className="border-t border-gray-200/50 my-2" />}
+            {courseLinks.map((link, idx) => (
+              <SidebarLink key={idx} link={link} onClick={() => navigate(link.href)}
+                className={isActive(link.href) ? "text-indigo-700 font-semibold" : ""} />
+            ))}
+            {open && <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-4 mb-1 px-3">Content</p>}
+            {!open && <div className="border-t border-gray-200/50 my-2" />}
+            {contentLinks.map((link, idx) => (
+              <SidebarLink key={idx} link={link} onClick={() => navigate(link.href)}
+                className={isActive(link.href) ? "text-indigo-700 font-semibold" : ""} />
+            ))}
+            {open && <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-4 mb-1 px-3">People</p>}
+            {!open && <div className="border-t border-gray-200/50 my-2" />}
+            {peopleLinks.map((link, idx) => (
+              <SidebarLink key={idx} link={link} onClick={() => navigate(link.href)}
+                className={isActive(link.href) ? "text-indigo-700 font-semibold" : ""} />
+            ))}
+            {open && <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-4 mb-1 px-3">Business</p>}
+            {!open && <div className="border-t border-gray-200/50 my-2" />}
+            {businessLinks.map((link, idx) => (
+              <SidebarLink key={idx} link={link} onClick={() => navigate(link.href)}
+                className={isActive(link.href) ? "text-indigo-700 font-semibold" : ""} />
+            ))}
+            {open && <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-4 mb-1 px-3">System</p>}
+            {!open && <div className="border-t border-gray-200/50 my-2" />}
+            {systemLinks.map((link, idx) => (
+              <SidebarLink key={idx} link={link} onClick={() => navigate(link.href)}
+                className={isActive(link.href) ? "text-indigo-700 font-semibold" : ""} />
             ))}
           </div>
         </div>

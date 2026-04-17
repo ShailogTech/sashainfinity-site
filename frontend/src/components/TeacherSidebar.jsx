@@ -20,7 +20,7 @@ export default function TeacherSidebar() {
   const location = useLocation();
 
   const links = [
-    { label: "Dashboard", href: "/teacher", icon: <IconBrandTabler className={ICON_CLASS} /> },
+    { label: "Dashboard", href: "/tutor", icon: <IconBrandTabler className={ICON_CLASS} /> },
     { label: "My Classes", href: "/teacher/classes", icon: <IconBookUpload className={ICON_CLASS} /> },
     { label: "Students", href: "/teacher/students", icon: <IconUsers className={ICON_CLASS} /> },
     { label: "Assignments", href: "/teacher/assignments", icon: <IconClipboardList className={ICON_CLASS} /> },
@@ -30,7 +30,7 @@ export default function TeacherSidebar() {
   ];
 
   const isActive = (href) => {
-    if (href === "/teacher") return location.pathname === "/teacher";
+    if (href === "/tutor") return location.pathname === "/tutor";
     if (href === "/") return false;
     return location.pathname.startsWith(href);
   };

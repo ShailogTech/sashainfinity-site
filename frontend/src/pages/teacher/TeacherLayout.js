@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import TeacherSidebar from "@/components/TeacherSidebar";
 
 const navItems = [
-  { path: "/teacher", label: "Dashboard" },
+  { path: "/tutor", label: "Dashboard" },
   { path: "/teacher/classes", label: "My Classes" },
   { path: "/teacher/students", label: "Students" },
   { path: "/teacher/assignments", label: "Assignments" },
@@ -14,7 +14,7 @@ const TeacherLayout = () => {
   const location = useLocation();
 
   const isActive = (path) => {
-    if (path === "/teacher") return location.pathname === "/teacher";
+    if (path === "/tutor") return location.pathname === "/tutor";
     return location.pathname.startsWith(path);
   };
 

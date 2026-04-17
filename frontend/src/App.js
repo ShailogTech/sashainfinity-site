@@ -20,6 +20,7 @@ import AdminDataPage from "@/pages/admin/AdminDataPage";
 import AdminSettings from "@/pages/admin/AdminSettings";
 import StudentLayout from "@/pages/student/StudentLayout";
 import StudentDashboard from "@/pages/student/StudentDashboard";
+import { StudentCourses, StudentAssignments, StudentGrades } from "@/pages/student/StudentPages";
 import TeacherLayout from "@/pages/teacher/TeacherLayout";
 import TeacherDashboard from "@/pages/teacher/TeacherDashboard";
 import SplashScreen from "@/components/SplashScreen";
@@ -39,7 +40,7 @@ function AppContent() {
   const isAuth = location.pathname === "/login" || location.pathname === "/get-started";
   const isAdmin = location.pathname.startsWith("/admin");
   const isStudent = location.pathname.startsWith("/student");
-  const isTeacher = location.pathname.startsWith("/teacher");
+  const isTeacher = location.pathname.startsWith("/tutor");
 
   return (
     <>
@@ -75,12 +76,12 @@ function AppContent() {
         </Route>
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<StudentDashboard />} />
-          <Route path="courses" element={<AdminDataPage pageKey="enrollments" />} />
-          <Route path="assignments" element={<AdminDataPage pageKey="quizzes" />} />
-          <Route path="grades" element={<AdminDataPage pageKey="analytics" />} />
+          <Route path="courses" element={<StudentCourses />} />
+          <Route path="assignments" element={<StudentAssignments />} />
+          <Route path="grades" element={<StudentGrades />} />
           <Route path="profile" element={<AdminSettings />} />
         </Route>
-        <Route path="/teacher" element={<TeacherLayout />}>
+        <Route path="/tutor" element={<TeacherLayout />}>
           <Route index element={<TeacherDashboard />} />
           <Route path="classes" element={<AdminDataPage pageKey="lessons" />} />
           <Route path="students" element={<AdminDataPage pageKey="students" />} />

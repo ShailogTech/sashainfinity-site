@@ -22,13 +22,15 @@ export default function Navbar() {
     document.body.style.overflow = !mobileOpen ? "hidden" : "";
   };
 
+  const [searchOpen, setSearchOpen] = useState(false);
+
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/#about", label: "About", isHash: true },
     { to: "/courses", label: "Courses" },
     { to: "/blog", label: "Blog" },
     { to: "/contact", label: "Contact" },
-    { to: "/meiporul-ar", label: "Meiporul AR" },
+    { to: "/meiporul-ar", label: "AR" },
   ];
 
   const handleHashClick = (hash) => {
@@ -64,6 +66,9 @@ export default function Navbar() {
         </ul>
 
         <div className="sasha-nav-cta">
+          <button onClick={() => setSearchOpen(!searchOpen)} className="btn-ghost" style={{ padding: "10px 12px", display: "flex", alignItems: "center" }} data-testid="nav-search-btn">
+            <i className="fa-solid fa-magnifying-glass" style={{ fontSize: 14 }}></i>
+          </button>
           <Link to="/login" className="btn-ghost" data-testid="nav-login-btn">Login</Link>
           <Link to="/get-started" className="btn-primary-nav" data-testid="nav-get-started-btn">Get Started</Link>
         </div>
@@ -72,6 +77,17 @@ export default function Navbar() {
           <span></span><span></span><span></span>
         </button>
       </nav>
+
+      {/* Search Bar */}
+      {searchOpen && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 200, background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)", display: "flex", alignItems: "flex-start", justifyContent: "center", paddingTop: 120 }} onClick={() => setSearchOpen(false)}>
+          <div style={{ width: "90%", maxWidth: 600, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderRadius: 20, padding: "8px 8px 8px 20px", display: "flex", alignItems: "center", gap: 12, boxShadow: "0 24px 80px rgba(0,0,0,0.15)", border: "1px solid rgba(255,255,255,0.3)" }} onClick={e => e.stopPropagation()}>
+            <i className="fa-solid fa-magnifying-glass" style={{ color: "#9ca3af", fontSize: 16 }}></i>
+            <input autoFocus type="text" placeholder="Search courses, lessons, topics..." style={{ flex: 1, border: "none", outline: "none", fontSize: 16, fontFamily: "Inter, sans-serif", color: "#1a1a2e", background: "transparent", padding: "14px 0" }} />
+            <button onClick={() => setSearchOpen(false)} style={{ padding: "10px 16px", background: "#f3f4f6", border: "none", borderRadius: 12, fontSize: 12, fontWeight: 700, cursor: "pointer", color: "#6b7280", fontFamily: "Inter" }}>ESC</button>
+          </div>
+        </div>
+      )}
 
       {/* Mobile Menu */}
       <div className={`sasha-mobile-menu ${mobileOpen ? "active" : ""}`} data-testid="mobile-menu">
