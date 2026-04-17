@@ -38,7 +38,7 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
-      {!isAuth && <Navbar />}
+      {!isAuth && !isAdmin && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
