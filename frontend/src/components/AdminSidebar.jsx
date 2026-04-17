@@ -8,6 +8,16 @@ import {
   IconChartBar,
   IconSettings,
   IconWorld,
+  IconCategory,
+  IconTags,
+  IconNotebook,
+  IconQuestionMark,
+  IconChalkboard,
+  IconListDetails,
+  IconReceipt,
+  IconShoppingCart,
+  IconTicket,
+  IconCertificate,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
@@ -21,10 +31,19 @@ export default function AdminSidebar() {
 
   const links = [
     { label: "Dashboard", href: "/admin", icon: <IconBrandTabler className={ICON_CLASS} /> },
-    { label: "Courses", href: "/admin/courses", icon: <IconBookUpload className={ICON_CLASS} /> },
-    { label: "Users", href: "/admin/users", icon: <IconUsers className={ICON_CLASS} /> },
-    { label: "Blog", href: "/admin/blog", icon: <IconEdit className={ICON_CLASS} /> },
+    { label: "All Courses", href: "/admin/courses", icon: <IconBookUpload className={ICON_CLASS} /> },
+    { label: "Categories", href: "/admin/categories", icon: <IconCategory className={ICON_CLASS} /> },
+    { label: "Tags", href: "/admin/tags", icon: <IconTags className={ICON_CLASS} /> },
+    { label: "Lessons", href: "/admin/lessons", icon: <IconNotebook className={ICON_CLASS} /> },
+    { label: "Quizzes", href: "/admin/quizzes", icon: <IconQuestionMark className={ICON_CLASS} /> },
+    { label: "Students", href: "/admin/students", icon: <IconUsers className={ICON_CLASS} /> },
+    { label: "Tutors", href: "/admin/tutors", icon: <IconChalkboard className={ICON_CLASS} /> },
+    { label: "Enrollments", href: "/admin/enrollments", icon: <IconListDetails className={ICON_CLASS} /> },
     { label: "Analytics", href: "/admin/analytics", icon: <IconChartBar className={ICON_CLASS} /> },
+    { label: "Orders", href: "/admin/orders", icon: <IconShoppingCart className={ICON_CLASS} /> },
+    { label: "Coupons", href: "/admin/coupons", icon: <IconTicket className={ICON_CLASS} /> },
+    { label: "Certificates", href: "/admin/certificates", icon: <IconCertificate className={ICON_CLASS} /> },
+    { label: "Blog", href: "/admin/blog", icon: <IconEdit className={ICON_CLASS} /> },
     { label: "Settings", href: "/admin/settings", icon: <IconSettings className={ICON_CLASS} /> },
     { label: "View Site", href: "/", icon: <IconWorld className={ICON_CLASS} /> },
   ];

@@ -3,10 +3,20 @@ import AdminSidebar from "@/components/AdminSidebar";
 
 const navItems = [
   { path: "/admin", label: "Dashboard" },
-  { path: "/admin/courses", label: "Courses" },
-  { path: "/admin/users", label: "Users" },
-  { path: "/admin/blog", label: "Blog" },
+  { path: "/admin/courses", label: "All Courses" },
+  { path: "/admin/categories", label: "Categories" },
+  { path: "/admin/tags", label: "Tags" },
+  { path: "/admin/lessons", label: "Lessons" },
+  { path: "/admin/quizzes", label: "Quizzes" },
+  { path: "/admin/students", label: "Students" },
+  { path: "/admin/tutors", label: "Tutors" },
+  { path: "/admin/enrollments", label: "Enrollments" },
   { path: "/admin/analytics", label: "Analytics" },
+  { path: "/admin/orders", label: "Orders" },
+  { path: "/admin/coupons", label: "Coupons" },
+  { path: "/admin/certificates", label: "Certificates" },
+  { path: "/admin/blog", label: "Blog" },
+  { path: "/admin/users", label: "Users" },
   { path: "/admin/settings", label: "Settings" },
 ];
 
@@ -39,7 +49,7 @@ const AdminLayout = () => {
         <AdminSidebar />
       </div>
 
-      <main className="relative z-10 flex-1 min-w-0" style={{ paddingTop: 88 }}>
+      <main className="relative z-10 flex-1 min-w-0" style={{ paddingTop: 32 }}>
         <div className="px-6">
           <h2 className="text-2xl font-bold text-gray-800">{currentLabel}</h2>
         </div>

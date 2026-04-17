@@ -21,6 +21,7 @@ const arCourses = [
 
 export default function MeiporulPage() {
   const [arModal, setArModal] = useState(null);
+  const [arView, setArView] = useState("qr");
 
   return (
     <div className="sasha-page meiporul-page" data-testid="meiporul-page">
@@ -118,31 +119,54 @@ export default function MeiporulPage() {
 
       {/* AR Launch Modal */}
       {arModal && (
-        <div className="ar-modal-overlay" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }} onClick={() => setArModal(null)}>
-          <div className="ar-modal-content" style={{ background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderRadius: 24, padding: 40, maxWidth: 420, width: "90%", textAlign: "center", border: "1px solid rgba(255,255,255,0.3)", boxShadow: "0 24px 80px rgba(0,0,0,0.15)" }} onClick={e => e.stopPropagation()}>
-            <div style={{ width: 80, height: 80, borderRadius: 20, background: `linear-gradient(135deg, ${arModal.color}20, ${arModal.color}08)`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", border: `1px solid ${arModal.color}30` }}>
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={arModal.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-              </svg>
+        <div className="ar-modal-overlay" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }} onClick={() => { setArModal(null); setArView("qr"); }}>
+          <div className="ar-modal-content" style={{ background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderRadius: 24, padding: 40, maxWidth: 460, width: "90%", textAlign: "center", border: "1px solid rgba(255,255,255,0.3)", boxShadow: "0 24px 80px rgba(0,0,0,0.15)" }} onClick={e => e.stopPropagation()}>
+            <h3 style={{ fontSize: 22, fontWeight: 800, color: "#1a1a2e", marginBottom: 4 }}>{arModal.title}</h3>
+            <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 20 }}>{arModal.level} · {arModal.duration}</p>
+
+            {/* Toggle Tabs */}
+            <div style={{ display: "flex", gap: 0, background: "#f3f4f6", borderRadius: 10, padding: 3, marginBottom: 20 }}>
+              <button onClick={() => setArView("qr")} style={{ flex: 1, padding: "8px 16px", borderRadius: 8, border: "none", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif", background: arView === "qr" ? "#fff" : "transparent", color: arView === "qr" ? "#1a1a2e" : "#9ca3af", boxShadow: arView === "qr" ? "0 2px 8px rgba(0,0,0,0.08)" : "none", transition: "all 0.2s" }}>
+                <i className="fa-solid fa-qrcode" style={{ marginRight: 6 }}></i> QR Code
+              </button>
+              <button onClick={() => setArView("3d")} style={{ flex: 1, padding: "8px 16px", borderRadius: 8, border: "none", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif", background: arView === "3d" ? "#fff" : "transparent", color: arView === "3d" ? "#1a1a2e" : "#9ca3af", boxShadow: arView === "3d" ? "0 2px 8px rgba(0,0,0,0.08)" : "none", transition: "all 0.2s" }}>
+                <i className="fa-solid fa-cube" style={{ marginRight: 6 }}></i> 3D Preview
+              </button>
             </div>
-            <h3 style={{ fontSize: 22, fontWeight: 800, color: "#1a1a2e", marginBottom: 8 }}>{arModal.title}</h3>
-            <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 6 }}>{arModal.level} · {arModal.duration}</p>
-            <p style={{ fontSize: 13, color: "#9ca3af", marginBottom: 24 }}>Scan the QR code below with your phone to launch the AR experience.</p>
-            <div style={{ width: 160, height: 160, borderRadius: 16, background: "#f3f4f6", margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.06)" }}>
-              <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                <rect x="10" y="10" width="30" height="30" rx="4" fill="#1a1a2e"/><rect x="80" y="10" width="30" height="30" rx="4" fill="#1a1a2e"/>
-                <rect x="10" y="80" width="30" height="30" rx="4" fill="#1a1a2e"/><rect x="50" y="50" width="20" height="20" rx="2" fill="#1a1a2e"/>
-                <rect x="15" y="15" width="20" height="20" rx="2" fill="#fff"/><rect x="85" y="15" width="20" height="20" rx="2" fill="#fff"/>
-                <rect x="15" y="85" width="20" height="20" rx="2" fill="#fff"/><rect x="20" y="20" width="10" height="10" fill="#1a1a2e"/>
-                <rect x="90" y="20" width="10" height="10" fill="#1a1a2e"/><rect x="20" y="90" width="10" height="10" fill="#1a1a2e"/>
-                <rect x="50" y="10" width="6" height="6" fill="#1a1a2e"/><rect x="60" y="18" width="6" height="6" fill="#1a1a2e"/>
-                <rect x="50" y="80" width="6" height="6" fill="#1a1a2e"/><rect x="80" y="60" width="6" height="6" fill="#1a1a2e"/>
-                <rect x="95" y="55" width="6" height="6" fill="#1a1a2e"/><rect x="55" y="95" width="6" height="6" fill="#1a1a2e"/>
-              </svg>
-            </div>
-            <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 20 }}>Or open on a WebXR-compatible browser</p>
+
+            {/* QR View */}
+            {arView === "qr" && (
+              <>
+                <p style={{ fontSize: 13, color: "#9ca3af", marginBottom: 16 }}>Scan with your phone to launch the AR experience.</p>
+                <div style={{ width: 180, height: 180, borderRadius: 16, background: "#f3f4f6", margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.06)" }}>
+                  <svg width="140" height="140" viewBox="0 0 120 120" fill="none">
+                    <rect x="10" y="10" width="30" height="30" rx="4" fill="#1a1a2e"/><rect x="80" y="10" width="30" height="30" rx="4" fill="#1a1a2e"/>
+                    <rect x="10" y="80" width="30" height="30" rx="4" fill="#1a1a2e"/><rect x="50" y="50" width="20" height="20" rx="2" fill="#1a1a2e"/>
+                    <rect x="15" y="15" width="20" height="20" rx="2" fill="#fff"/><rect x="85" y="15" width="20" height="20" rx="2" fill="#fff"/>
+                    <rect x="15" y="85" width="20" height="20" rx="2" fill="#fff"/><rect x="20" y="20" width="10" height="10" fill="#1a1a2e"/>
+                    <rect x="90" y="20" width="10" height="10" fill="#1a1a2e"/><rect x="20" y="90" width="10" height="10" fill="#1a1a2e"/>
+                    <rect x="50" y="10" width="6" height="6" fill="#1a1a2e"/><rect x="60" y="18" width="6" height="6" fill="#1a1a2e"/>
+                    <rect x="50" y="80" width="6" height="6" fill="#1a1a2e"/><rect x="80" y="60" width="6" height="6" fill="#1a1a2e"/>
+                    <rect x="95" y="55" width="6" height="6" fill="#1a1a2e"/><rect x="55" y="95" width="6" height="6" fill="#1a1a2e"/>
+                  </svg>
+                </div>
+                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 16 }}>Or open on a WebXR-compatible browser</p>
+              </>
+            )}
+
+            {/* 3D Preview */}
+            {arView === "3d" && (
+              <div style={{ width: "100%", height: 220, borderRadius: 16, background: `linear-gradient(135deg, ${arModal.color}12, ${arModal.color}04)`, margin: "0 auto 16px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", border: `1px solid ${arModal.color}20`, position: "relative" }}>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke={arModal.color} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.8 }}>
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+                <p style={{ fontSize: 12, color: "#9ca3af", marginTop: 12 }}>Interactive 3D model — rotate and zoom</p>
+                <div style={{ position: "absolute", top: 10, right: 10, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(8px)", borderRadius: 6, padding: "3px 8px", fontSize: 10, fontWeight: 700, color: arModal.color, textTransform: "uppercase" }}>3D Preview</div>
+              </div>
+            )}
+
             <div style={{ display: "flex", gap: 12 }}>
-              <button onClick={() => setArModal(null)} style={{ flex: 1, padding: "12px 20px", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 12, background: "transparent", fontSize: 14, fontWeight: 600, cursor: "pointer", color: "#6b7280", fontFamily: "Inter, sans-serif" }}>Close</button>
+              <button onClick={() => { setArModal(null); setArView("qr"); }} style={{ flex: 1, padding: "12px 20px", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 12, background: "transparent", fontSize: 14, fontWeight: 600, cursor: "pointer", color: "#6b7280", fontFamily: "Inter, sans-serif" }}>Close</button>
               <button style={{ flex: 1, padding: "12px 20px", border: "none", borderRadius: 12, background: "#f4911a", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif" }}>Launch AR</button>
             </div>
           </div>

@@ -16,7 +16,7 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminCourses from "@/pages/admin/AdminCourses";
 import AdminUsers from "@/pages/admin/AdminUsers";
 import AdminLayout from "@/pages/admin/AdminLayout";
-import AdminPlaceholder from "@/pages/admin/AdminPlaceholder";
+import AdminDataPage from "@/pages/admin/AdminDataPage";
 import AdminSettings from "@/pages/admin/AdminSettings";
 import StudentLayout from "@/pages/student/StudentLayout";
 import StudentDashboard from "@/pages/student/StudentDashboard";
@@ -44,7 +44,7 @@ function AppContent() {
   return (
     <>
       <ScrollToTop />
-      {!isAuth && !isAdmin && <Navbar />}
+      {!isAuth && !isAdmin && !isStudent && !isTeacher && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
@@ -58,29 +58,39 @@ function AppContent() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="courses" element={<AdminCourses />} />
+          <Route path="categories" element={<AdminDataPage pageKey="categories" />} />
+          <Route path="tags" element={<AdminDataPage pageKey="tags" />} />
+          <Route path="lessons" element={<AdminDataPage pageKey="lessons" />} />
+          <Route path="quizzes" element={<AdminDataPage pageKey="quizzes" />} />
+          <Route path="students" element={<AdminDataPage pageKey="students" />} />
+          <Route path="tutors" element={<AdminDataPage pageKey="tutors" />} />
+          <Route path="enrollments" element={<AdminDataPage pageKey="enrollments" />} />
+          <Route path="analytics" element={<AdminDataPage pageKey="analytics" />} />
+          <Route path="orders" element={<AdminDataPage pageKey="orders" />} />
+          <Route path="coupons" element={<AdminDataPage pageKey="coupons" />} />
+          <Route path="certificates" element={<AdminDataPage pageKey="certificates" />} />
+          <Route path="blog" element={<AdminDataPage pageKey="blog" />} />
           <Route path="users" element={<AdminUsers />} />
-          <Route path="blog" element={<AdminPlaceholder title="Blog" description="Manage blog posts, drafts, and publishing." />} />
-          <Route path="analytics" element={<AdminPlaceholder title="Analytics" description="Detailed reports on users, courses, and revenue." />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
         <Route path="/student" element={<StudentLayout />}>
           <Route index element={<StudentDashboard />} />
-          <Route path="courses" element={<AdminPlaceholder title="My Courses" description="Your enrolled courses and progress." />} />
-          <Route path="assignments" element={<AdminPlaceholder title="Assignments" description="Upcoming and past assignments." />} />
-          <Route path="grades" element={<AdminPlaceholder title="Grades" description="Your scores and feedback." />} />
-          <Route path="profile" element={<AdminPlaceholder title="Profile" description="Account details and preferences." />} />
+          <Route path="courses" element={<AdminDataPage pageKey="enrollments" />} />
+          <Route path="assignments" element={<AdminDataPage pageKey="quizzes" />} />
+          <Route path="grades" element={<AdminDataPage pageKey="analytics" />} />
+          <Route path="profile" element={<AdminSettings />} />
         </Route>
         <Route path="/teacher" element={<TeacherLayout />}>
           <Route index element={<TeacherDashboard />} />
-          <Route path="classes" element={<AdminPlaceholder title="My Classes" description="Courses and classes you teach." />} />
-          <Route path="students" element={<AdminPlaceholder title="Students" description="Enrolled students across your classes." />} />
-          <Route path="assignments" element={<AdminPlaceholder title="Assignments" description="Create, edit, and publish assignments." />} />
-          <Route path="grading" element={<AdminPlaceholder title="Grading" description="Review and grade pending submissions." />} />
-          <Route path="profile" element={<AdminPlaceholder title="Profile" description="Account details and preferences." />} />
+          <Route path="classes" element={<AdminDataPage pageKey="lessons" />} />
+          <Route path="students" element={<AdminDataPage pageKey="students" />} />
+          <Route path="assignments" element={<AdminDataPage pageKey="quizzes" />} />
+          <Route path="grading" element={<AdminDataPage pageKey="analytics" />} />
+          <Route path="profile" element={<AdminSettings />} />
         </Route>
       </Routes>
       {!isAuth && !isAdmin && !isStudent && !isTeacher && <Footer />}
-      {!isAuth && !isHome && <RoamingMascot />}
+      {!isAuth && !isHome && !isAdmin && !isStudent && !isTeacher && <RoamingMascot />}
     </>
   );
 }

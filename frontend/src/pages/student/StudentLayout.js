@@ -38,7 +38,7 @@ const StudentLayout = () => {
         <StudentSidebar />
       </div>
 
-      <main className="relative z-10 flex-1 min-w-0" style={{ paddingTop: 88 }}>
+      <main className="relative z-10 flex-1 min-w-0" style={{ paddingTop: 32 }}>
         <div className="px-6">
           <h2 className="text-2xl font-bold text-gray-800">{currentLabel}</h2>
         </div>
