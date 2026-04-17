@@ -39,7 +39,6 @@ function HeroSection({ canvasRef }) {
         </div>
         <div className="scroll-hint">
           <div className="scroll-mouse"></div>
-          <span>Scroll</span>
         </div>
       </div>
     </section>
