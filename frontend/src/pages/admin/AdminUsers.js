@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { IconUsers, IconUserCheck, IconBook, IconChalkboard } from "@tabler/icons-react";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -108,7 +109,7 @@ const AdminUsers = () => {
       case "instructor":
         return (
           <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded">
-            Instructor
+            Tutor
           </span>
         );
       case "student":
@@ -185,7 +186,7 @@ const AdminUsers = () => {
             >
               <option value="all">All Roles</option>
               <option value="admin">Admins</option>
-              <option value="instructor">Instructors</option>
+              <option value="instructor">Tutors</option>
               <option value="student">Students</option>
             </select>
           </div>
@@ -200,7 +201,7 @@ const AdminUsers = () => {
               <p className="text-sm text-gray-600">Total Users</p>
               <p className="text-2xl font-bold text-gray-800">{users.length}</p>
             </div>
-            <div className="text-3xl">👥</div>
+            <div className="bg-blue-500 text-white p-3 rounded-lg"><IconUsers size={24} /></div>
           </div>
         </div>
         <div className="glass-card rounded-lg p-4">
@@ -211,7 +212,7 @@ const AdminUsers = () => {
                 {users.filter((u) => u.status === "active").length}
               </p>
             </div>
-            <div className="text-3xl">✅</div>
+            <div className="bg-green-500 text-white p-3 rounded-lg"><IconUserCheck size={24} /></div>
           </div>
         </div>
         <div className="glass-card rounded-lg p-4">
@@ -222,18 +223,18 @@ const AdminUsers = () => {
                 {users.filter((u) => u.role === "student").length}
               </p>
             </div>
-            <div className="text-3xl">📚</div>
+            <div className="bg-purple-500 text-white p-3 rounded-lg"><IconBook size={24} /></div>
           </div>
         </div>
         <div className="glass-card rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Instructors</p>
+              <p className="text-sm text-gray-600">Tutors</p>
               <p className="text-2xl font-bold text-gray-800">
                 {users.filter((u) => u.role === "instructor").length}
               </p>
             </div>
-            <div className="text-3xl">👨‍🏫</div>
+            <div className="bg-orange-500 text-white p-3 rounded-lg"><IconChalkboard size={24} /></div>
           </div>
         </div>
       </div>

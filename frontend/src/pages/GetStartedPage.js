@@ -61,7 +61,7 @@ export default function GetStartedPage() {
               <button className={`role-btn ${role === "instructor" ? "active" : ""}`}
                 onClick={() => setRole("instructor")} data-testid="role-instructor">
                 <i className="fa-solid fa-chalkboard-user"></i>
-                <span>Instructor</span>
+                <span>Tutor</span>
                 <small>Teach &amp; earn</small>
               </button>
             </div>

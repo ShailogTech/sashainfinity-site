@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { IconUsers, IconBookUpload, IconEdit, IconUserCheck, IconCurrencyRupee, IconUser, IconBook, IconArticle, IconCash } from "@tabler/icons-react";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
@@ -51,7 +52,7 @@ const AdminDashboard = () => {
     {
       title: "Total Users",
       value: stats.totalUsers,
-      icon: "",
+      icon: <IconUsers size={28} />,
       color: "bg-blue-500",
       trend: "+12.5%",
       trendUp: true,
@@ -59,7 +60,7 @@ const AdminDashboard = () => {
     {
       title: "Total Courses",
       value: stats.totalCourses,
-      icon: "",
+      icon: <IconBookUpload size={28} />,
       color: "bg-green-500",
       trend: "+3",
       trendUp: true,
@@ -67,7 +68,7 @@ const AdminDashboard = () => {
     {
       title: "Blog Posts",
       value: stats.totalBlogPosts,
-      icon: "",
+      icon: <IconEdit size={28} />,
       color: "bg-purple-500",
       trend: "+8",
       trendUp: true,
@@ -75,7 +76,7 @@ const AdminDashboard = () => {
     {
       title: "Active Users",
       value: stats.activeUsers,
-      icon: "",
+      icon: <IconUserCheck size={28} />,
       color: "bg-orange-500",
       trend: "+5.2%",
       trendUp: true,
@@ -83,7 +84,7 @@ const AdminDashboard = () => {
     {
       title: "Revenue",
       value: stats.revenue.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }),
-      icon: "",
+      icon: <IconCurrencyRupee size={28} />,
       color: "bg-emerald-500",
       trend: "+18.3%",
       trendUp: true,
@@ -93,15 +94,15 @@ const AdminDashboard = () => {
   const getActivityIcon = (type) => {
     switch (type) {
       case "user":
-        return "";
+        return <IconUser size={18} />;
       case "course":
-        return "";
+        return <IconBook size={18} />;
       case "blog":
-        return "";
+        return <IconArticle size={18} />;
       case "revenue":
-        return "";
+        return <IconCash size={18} />;
       default:
-        return "";
+        return <IconUser size={18} />;
     }
   };
 

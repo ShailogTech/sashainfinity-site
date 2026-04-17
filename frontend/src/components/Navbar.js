@@ -38,9 +38,11 @@ export default function Navbar() {
     }
   };
 
+  const isDarkPage = location.pathname === "/meiporul-ar";
+
   return (
     <>
-      <nav data-testid="navbar" className={`sasha-nav ${scrolled ? "scrolled" : ""}`}>
+      <nav data-testid="navbar" className={`sasha-nav ${scrolled ? "scrolled" : ""} ${isDarkPage && !scrolled ? "nav-dark" : ""}`}>
         <Link to="/" className="sasha-nav-logo" data-testid="nav-logo">
           <img src="https://sashainfinity.com/wp-content/uploads/2025/06/sasha-logo-small.png" alt="Sashainfinity" />
         </Link>

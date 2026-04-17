@@ -19,7 +19,7 @@ const TeacherLayout = () => {
   };
 
   const currentLabel =
-    navItems.find((item) => isActive(item.path))?.label || "Teacher Portal";
+    navItems.find((item) => isActive(item.path))?.label || "Tutor Portal";
 
   return (
     <div className="min-h-screen w-full bg-white relative text-gray-800 flex">

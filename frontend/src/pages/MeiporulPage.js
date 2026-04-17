@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const features = [
   { icon: "fa-solid fa-cube", title: "3D Math Models", desc: "Explore complex mathematical concepts through interactive 3D models in augmented reality." },
@@ -10,15 +11,17 @@ const features = [
 ];
 
 const arCourses = [
-  { title: "Trigonometry in 3D", level: "Beginner", duration: "45 min", students: 120 },
-  { title: "Algebra Visualized", level: "Intermediate", duration: "60 min", students: 85 },
-  { title: "Geometry Explorer", level: "Beginner", duration: "30 min", students: 150 },
-  { title: "Calculus AR Lab", level: "Advanced", duration: "90 min", students: 45 },
-  { title: "Statistics & Data Viz", level: "Intermediate", duration: "75 min", students: 60 },
-  { title: "Number Theory AR", level: "Advanced", duration: "60 min", students: 30 },
+  { title: "Trigonometry in 3D", level: "Beginner", duration: "45 min", students: 120, color: "#43e97b" },
+  { title: "Algebra Visualized", level: "Intermediate", duration: "60 min", students: 85, color: "#667EEA" },
+  { title: "Geometry Explorer", level: "Beginner", duration: "30 min", students: 150, color: "#f4911a" },
+  { title: "Calculus AR Lab", level: "Advanced", duration: "90 min", students: 45, color: "#f5576c" },
+  { title: "Statistics & Data Viz", level: "Intermediate", duration: "75 min", students: 60, color: "#4facfe" },
+  { title: "Number Theory AR", level: "Advanced", duration: "60 min", students: 30, color: "#764BA2" },
 ];
 
 export default function MeiporulPage() {
+  const [arModal, setArModal] = useState(null);
+
   return (
     <div className="sasha-page meiporul-page" data-testid="meiporul-page">
       <div className="page-hero meiporul-hero">
@@ -91,18 +94,60 @@ export default function MeiporulPage() {
           <div className="ar-courses-grid" data-testid="ar-courses-grid">
             {arCourses.map((c, i) => (
               <div className="ar-course-card" key={i} data-testid={`ar-course-${i}`}>
+                {/* 3D Model Preview */}
+                <div className="ar-model-preview" style={{ background: `linear-gradient(135deg, ${c.color}18, ${c.color}08)`, borderRadius: 12, height: 140, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16, border: `1px solid ${c.color}22`, position: "relative", overflow: "hidden" }}>
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={c.color} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                  </svg>
+                  <div style={{ position: "absolute", bottom: 8, right: 8, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(8px)", borderRadius: 6, padding: "3px 8px", fontSize: 10, fontWeight: 700, color: c.color, textTransform: "uppercase", letterSpacing: 0.5 }}>3D Preview</div>
+                </div>
                 <div className="ar-course-badge">{c.level}</div>
                 <h3>{c.title}</h3>
                 <div className="ar-course-meta">
                   <span><i className="fa-solid fa-clock"></i> {c.duration}</span>
                   <span><i className="fa-solid fa-users"></i> {c.students} learners</span>
                 </div>
-                <Link to={`/courses/${[12,10,9,11,10,9][i]}`} className="enroll-btn" data-testid={`ar-enroll-${i}`}>Start Module</Link>
+                <button onClick={() => setArModal(c)} className="enroll-btn" data-testid={`ar-start-${i}`} style={{ width: "100%", textAlign: "center" }}>
+                  <i className="fa-solid fa-cube" style={{ marginRight: 6 }}></i> Start AR Module
+                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* AR Launch Modal */}
+      {arModal && (
+        <div className="ar-modal-overlay" style={{ position: "fixed", inset: 0, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)" }} onClick={() => setArModal(null)}>
+          <div className="ar-modal-content" style={{ background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderRadius: 24, padding: 40, maxWidth: 420, width: "90%", textAlign: "center", border: "1px solid rgba(255,255,255,0.3)", boxShadow: "0 24px 80px rgba(0,0,0,0.15)" }} onClick={e => e.stopPropagation()}>
+            <div style={{ width: 80, height: 80, borderRadius: 20, background: `linear-gradient(135deg, ${arModal.color}20, ${arModal.color}08)`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", border: `1px solid ${arModal.color}30` }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={arModal.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 style={{ fontSize: 22, fontWeight: 800, color: "#1a1a2e", marginBottom: 8 }}>{arModal.title}</h3>
+            <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 6 }}>{arModal.level} · {arModal.duration}</p>
+            <p style={{ fontSize: 13, color: "#9ca3af", marginBottom: 24 }}>Scan the QR code below with your phone to launch the AR experience.</p>
+            <div style={{ width: 160, height: 160, borderRadius: 16, background: "#f3f4f6", margin: "0 auto 20px", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.06)" }}>
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                <rect x="10" y="10" width="30" height="30" rx="4" fill="#1a1a2e"/><rect x="80" y="10" width="30" height="30" rx="4" fill="#1a1a2e"/>
+                <rect x="10" y="80" width="30" height="30" rx="4" fill="#1a1a2e"/><rect x="50" y="50" width="20" height="20" rx="2" fill="#1a1a2e"/>
+                <rect x="15" y="15" width="20" height="20" rx="2" fill="#fff"/><rect x="85" y="15" width="20" height="20" rx="2" fill="#fff"/>
+                <rect x="15" y="85" width="20" height="20" rx="2" fill="#fff"/><rect x="20" y="20" width="10" height="10" fill="#1a1a2e"/>
+                <rect x="90" y="20" width="10" height="10" fill="#1a1a2e"/><rect x="20" y="90" width="10" height="10" fill="#1a1a2e"/>
+                <rect x="50" y="10" width="6" height="6" fill="#1a1a2e"/><rect x="60" y="18" width="6" height="6" fill="#1a1a2e"/>
+                <rect x="50" y="80" width="6" height="6" fill="#1a1a2e"/><rect x="80" y="60" width="6" height="6" fill="#1a1a2e"/>
+                <rect x="95" y="55" width="6" height="6" fill="#1a1a2e"/><rect x="55" y="95" width="6" height="6" fill="#1a1a2e"/>
+              </svg>
+            </div>
+            <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 20 }}>Or open on a WebXR-compatible browser</p>
+            <div style={{ display: "flex", gap: 12 }}>
+              <button onClick={() => setArModal(null)} style={{ flex: 1, padding: "12px 20px", border: "1px solid rgba(0,0,0,0.1)", borderRadius: 12, background: "transparent", fontSize: 14, fontWeight: 600, cursor: "pointer", color: "#6b7280", fontFamily: "Inter, sans-serif" }}>Close</button>
+              <button style={{ flex: 1, padding: "12px 20px", border: "none", borderRadius: 12, background: "#f4911a", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "Inter, sans-serif" }}>Launch AR</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* CTA */}
       <section style={{ padding: "80px 0", background: "#fafafa" }}>

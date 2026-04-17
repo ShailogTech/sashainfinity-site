@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IconBook, IconChecks, IconClipboardList, IconCertificate, IconClock } from "@tabler/icons-react";
 
 const StudentDashboard = () => {
   const [stats, setStats] = useState({
@@ -45,11 +46,11 @@ const StudentDashboard = () => {
   }, []);
 
   const statCards = [
-    { title: "Enrolled Courses", value: stats.enrolledCourses, color: "bg-blue-500", trend: "+1 this month" },
-    { title: "Completed Lessons", value: stats.completedLessons, color: "bg-green-500", trend: "+8 this week" },
-    { title: "Assignments Due", value: stats.assignmentsDue, color: "bg-orange-500", trend: "3 pending" },
-    { title: "Certificates", value: stats.certificatesEarned, color: "bg-purple-500", trend: "+1 recently" },
-    { title: "Hours Learned", value: stats.hoursLearned, color: "bg-emerald-500", trend: "+6 this week" },
+    { title: "Enrolled Courses", value: stats.enrolledCourses, color: "bg-blue-500", trend: "+1 this month", icon: <IconBook size={24} /> },
+    { title: "Completed Lessons", value: stats.completedLessons, color: "bg-green-500", trend: "+8 this week", icon: <IconChecks size={24} /> },
+    { title: "Assignments Due", value: stats.assignmentsDue, color: "bg-orange-500", trend: "3 pending", icon: <IconClipboardList size={24} /> },
+    { title: "Certificates", value: stats.certificatesEarned, color: "bg-purple-500", trend: "+1 recently", icon: <IconCertificate size={24} /> },
+    { title: "Hours Learned", value: stats.hoursLearned, color: "bg-emerald-500", trend: "+6 this week", icon: <IconClock size={24} /> },
   ];
 
   if (loading) {
@@ -77,7 +78,7 @@ const StudentDashboard = () => {
                 <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
                 <p className="text-sm mt-2 text-green-600">{stat.trend}</p>
               </div>
-              <div className={`${stat.color} text-white text-3xl p-3 rounded-lg w-12 h-12`} />
+              <div className={`${stat.color} text-white p-3 rounded-lg`}>{stat.icon}</div>
             </div>
           </div>
         ))}

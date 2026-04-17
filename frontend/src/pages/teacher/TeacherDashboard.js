@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IconChalkboard, IconUsers, IconClipboardCheck, IconStar, IconCurrencyRupee } from "@tabler/icons-react";
 
 const TeacherDashboard = () => {
   const [stats, setStats] = useState({
@@ -46,15 +47,16 @@ const TeacherDashboard = () => {
   }, []);
 
   const statCards = [
-    { title: "Active Classes", value: stats.activeClasses, color: "bg-blue-500", trend: "+1 this term" },
-    { title: "Total Students", value: stats.totalStudents, color: "bg-green-500", trend: "+12 this week" },
-    { title: "Pending Grading", value: stats.pendingGrading, color: "bg-orange-500", trend: "Review soon" },
-    { title: "Avg. Rating", value: stats.averageRating, color: "bg-purple-500", trend: "+0.2 this month" },
+    { title: "Active Classes", value: stats.activeClasses, color: "bg-blue-500", trend: "+1 this term", icon: <IconChalkboard size={24} /> },
+    { title: "Total Students", value: stats.totalStudents, color: "bg-green-500", trend: "+12 this week", icon: <IconUsers size={24} /> },
+    { title: "Pending Grading", value: stats.pendingGrading, color: "bg-orange-500", trend: "Review soon", icon: <IconClipboardCheck size={24} /> },
+    { title: "Avg. Rating", value: stats.averageRating, color: "bg-purple-500", trend: "+0.2 this month", icon: <IconStar size={24} /> },
     {
       title: "Monthly Earnings",
       value: stats.monthlyEarnings.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }),
       color: "bg-emerald-500",
       trend: "+9.4%",
+      icon: <IconCurrencyRupee size={24} />,
     },
   ];
 
@@ -83,7 +85,7 @@ const TeacherDashboard = () => {
                 <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
                 <p className="text-sm mt-2 text-green-600">{stat.trend}</p>
               </div>
-              <div className={`${stat.color} text-white text-3xl p-3 rounded-lg w-12 h-12`} />
+              <div className={`${stat.color} text-white p-3 rounded-lg`}>{stat.icon}</div>
             </div>
           </div>
         ))}

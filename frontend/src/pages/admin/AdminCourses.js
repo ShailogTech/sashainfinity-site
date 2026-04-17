@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { IconTarget, IconBrandPython, IconCode, IconBookUpload } from "@tabler/icons-react";
+
+const THUMB_ICONS = {
+  react: <IconTarget size={28} />,
+  python: <IconBrandPython size={28} />,
+  web: <IconCode size={28} />,
+  default: <IconBookUpload size={28} />,
+};
 
 const AdminCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -25,7 +33,7 @@ const AdminCourses = () => {
             price: 7999,
             enrolled: 245,
             status: "published",
-            thumbnail: "🎯",
+            thumbnail: "react",
           },
           {
             id: 2,
@@ -35,7 +43,7 @@ const AdminCourses = () => {
             price: 6499,
             enrolled: 189,
             status: "published",
-            thumbnail: "🐍",
+            thumbnail: "python",
           },
           {
             id: 3,
@@ -45,7 +53,7 @@ const AdminCourses = () => {
             price: 11999,
             enrolled: 412,
             status: "draft",
-            thumbnail: "💻",
+            thumbnail: "web",
           },
         ]);
         setLoading(false);
@@ -156,7 +164,7 @@ const AdminCourses = () => {
                 <tr key={course.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="text-3xl">{course.thumbnail}</div>
+                      <div className="text-3xl text-orange-500">{THUMB_ICONS[course.thumbnail] || THUMB_ICONS.default}</div>
                       <div>
                         <p className="font-medium text-gray-800">{course.title}</p>
                         <p className="text-sm text-gray-600">

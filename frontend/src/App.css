@@ -94,6 +94,14 @@ a { text-decoration: none; }
 }
 .sasha-nav-logo img { height: 38px; }
 
+/* Dark page nav override (Meiporul AR etc.) */
+.sasha-nav.nav-dark { background: rgba(26, 26, 46, 0.4); border-bottom-color: rgba(255,255,255,0.1); }
+.sasha-nav.nav-dark .sasha-nav-links a { color: rgba(255,255,255,0.7); }
+.sasha-nav.nav-dark .sasha-nav-links a:hover, .sasha-nav.nav-dark .sasha-nav-links a.active { color: #fff; }
+.sasha-nav.nav-dark .btn-ghost { color: rgba(255,255,255,0.7); }
+.sasha-nav.nav-dark .btn-ghost:hover { color: #fff; }
+.sasha-nav.nav-dark .sasha-hamburger span { background: #fff; }
+
 .sasha-nav-links {
   display: flex; gap: 32px; list-style: none;
 }

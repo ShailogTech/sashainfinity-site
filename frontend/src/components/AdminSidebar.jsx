@@ -70,8 +70,8 @@ export default function AdminSidebar() {
 }
 
 const Logo = () => (
-  <a href="#" className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black">
-    <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+  <a href="/" className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black">
+    <img src="https://sashainfinity.com/wp-content/uploads/2025/06/sasha-logo-small.png" alt="Sashainfinity" className="h-6 shrink-0" />
     <motion.span
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -83,7 +83,7 @@ const Logo = () => (
 );
 
 const LogoIcon = () => (
-  <a href="#" className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black">
-    <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+  <a href="/" className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black">
+    <img src="https://sashainfinity.com/wp-content/uploads/2025/06/sasha-logo-small.png" alt="Sashainfinity" className="h-6 shrink-0" />
   </a>
 );
