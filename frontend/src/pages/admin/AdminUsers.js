@@ -166,7 +166,7 @@ const AdminUsers = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+      <div className="glass-card rounded-lg p-4 mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <input
@@ -194,7 +194,7 @@ const AdminUsers = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow-sm p-4">
+        <div className="glass-card rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Users</p>
@@ -203,7 +203,7 @@ const AdminUsers = () => {
             <div className="text-3xl">👥</div>
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm p-4">
+        <div className="glass-card rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Users</p>
@@ -214,7 +214,7 @@ const AdminUsers = () => {
             <div className="text-3xl">✅</div>
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm p-4">
+        <div className="glass-card rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Students</p>
@@ -225,7 +225,7 @@ const AdminUsers = () => {
             <div className="text-3xl">📚</div>
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm p-4">
+        <div className="glass-card rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Instructors</p>
@@ -239,7 +239,7 @@ const AdminUsers = () => {
       </div>
 
       {/* User List */}
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div className="glass-card rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">

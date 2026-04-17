@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CARD = "bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)]";
+const CARD = "glass-card rounded-xl p-6";
 
 const AdminSettings = () => {
   const [form, setForm] = useState({

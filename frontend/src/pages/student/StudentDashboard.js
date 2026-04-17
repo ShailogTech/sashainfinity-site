@@ -69,7 +69,7 @@ const StudentDashboard = () => {
         {statCards.map((stat, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl p-6 border-l-4 border-gray-200 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
+            className="glass-card glass-card-amber rounded-xl p-6 border-l-4 border-amber-300/30 hover:-translate-y-1 transition-all duration-300"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -84,7 +84,7 @@ const StudentDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+        <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Continue Learning</h3>
           <div className="space-y-4">
             {activeCourses.map((course) => (
@@ -105,7 +105,7 @@ const StudentDashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+        <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Upcoming Deadlines</h3>
           <div className="space-y-3">
             {upcomingDeadlines.map((item) => (
@@ -124,7 +124,7 @@ const StudentDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+        <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Learning Activity</h3>
           <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
             <div className="text-center text-gray-500">
@@ -134,7 +134,7 @@ const StudentDashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_4px_10px_-2px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+        <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Achievements</h3>
           <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
             <div className="text-center text-gray-500">
