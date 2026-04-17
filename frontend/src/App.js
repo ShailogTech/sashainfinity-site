@@ -22,8 +22,10 @@ import AdminAIFeatures from "@/pages/admin/AdminAIFeatures";
 import StudentLayout from "@/pages/student/StudentLayout";
 import StudentDashboard from "@/pages/student/StudentDashboard";
 import { StudentCourses, StudentAssignments, StudentGrades } from "@/pages/student/StudentPages";
+import LessonViewer from "@/pages/student/LessonViewer";
 import TeacherLayout from "@/pages/teacher/TeacherLayout";
 import TeacherDashboard from "@/pages/teacher/TeacherDashboard";
+import { TutorClasses, TutorStudents } from "@/pages/teacher/TutorPages";
 import SplashScreen from "@/components/SplashScreen";
 import RoamingMascot from "@/components/RoamingMascot";
 
@@ -43,10 +45,12 @@ function AppContent() {
   const isStudent = location.pathname.startsWith("/student");
   const isTeacher = location.pathname.startsWith("/tutor");
 
+  const isLesson = location.pathname.startsWith("/lesson");
+
   return (
     <>
       <ScrollToTop />
-      {!isAuth && !isAdmin && !isStudent && !isTeacher && <Navbar />}
+      {!isAuth && !isAdmin && !isStudent && !isTeacher && !isLesson && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CoursesPage />} />
@@ -57,6 +61,7 @@ function AppContent() {
         <Route path="/meiporul-ar" element={<MeiporulPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/get-started" element={<GetStartedPage />} />
+        <Route path="/lesson/:id" element={<LessonViewer />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="courses" element={<AdminCourses />} />
@@ -85,15 +90,15 @@ function AppContent() {
         </Route>
         <Route path="/tutor" element={<TeacherLayout />}>
           <Route index element={<TeacherDashboard />} />
-          <Route path="classes" element={<AdminDataPage pageKey="lessons" />} />
-          <Route path="students" element={<AdminDataPage pageKey="students" />} />
+          <Route path="classes" element={<TutorClasses />} />
+          <Route path="students" element={<TutorStudents />} />
           <Route path="assignments" element={<AdminDataPage pageKey="quizzes" />} />
           <Route path="grading" element={<AdminDataPage pageKey="analytics" />} />
           <Route path="profile" element={<AdminSettings />} />
         </Route>
       </Routes>
-      {!isAuth && !isAdmin && !isStudent && !isTeacher && <Footer />}
-      {!isAuth && !isHome && !isAdmin && !isStudent && !isTeacher && <RoamingMascot />}
+      {!isAuth && !isAdmin && !isStudent && !isTeacher && !isLesson && <Footer />}
+      {!isAuth && !isHome && !isAdmin && !isStudent && !isTeacher && !isLesson && <RoamingMascot />}
     </>
   );
 }

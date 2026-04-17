@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IconChalkboard, IconUsers, IconClipboardCheck, IconStar, IconCurrencyRupee } from "@tabler/icons-react";
+import { IconChalkboard, IconUsers, IconClipboardCheck, IconStar, IconCurrencyRupee, IconCheck } from "@tabler/icons-react";
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const engagementData = [
@@ -83,8 +83,73 @@ const TeacherDashboard = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+    <div className="space-y-5">
+      {/* Daily Briefing */}
+      <div className="glass-card glass-card-blue rounded-xl p-5">
+        <div className="flex items-start gap-4">
+          <div style={{ background: "rgba(102,126,234,0.12)", padding: 12, borderRadius: 14 }}>
+            <IconChalkboard size={24} style={{ color: "#667EEA" }} />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-base font-bold text-gray-800 mb-1">Good morning! Here's your daily briefing</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">You're <span className="font-bold text-blue-600">80% through Unit 2</span> of React Mastery. Based on yesterday's quiz, <span className="font-bold text-orange-500">5 students are struggling with Hooks</span>. Consider a quick revision session today.</p>
+            <div className="flex gap-3 mt-3">
+              <button className="px-4 py-1.5 bg-blue-500 text-white text-xs font-bold rounded-lg hover:bg-blue-600 transition-all">Review Struggling Students</button>
+              <button className="px-4 py-1.5 bg-gray-100 text-gray-600 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-all">Schedule Revision</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Row: Next Lesson Engine + Prerequisite Alert + Revision Radar */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Next Lesson Engine */}
+        <div className="glass-card glass-card-green rounded-xl p-4">
+          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Next Lesson Engine</h4>
+          <p className="text-sm font-bold text-gray-800 mb-1">Suggested: useEffect & Side Effects</p>
+          <p className="text-xs text-gray-500 mb-3">Auto-selected based on syllabus sequence. All prerequisites met.</p>
+          <div className="flex items-center gap-1 text-[10px] text-green-600 font-semibold"><IconCheck size={14} /> Prerequisites: <span className="text-gray-500">useState, JSX Basics</span></div>
+          <button className="mt-3 w-full px-3 py-2 bg-green-500 text-white text-xs font-bold rounded-lg hover:bg-green-600 transition-all">Start This Lesson</button>
+        </div>
+
+        {/* Prerequisite Alert */}
+        <div className="glass-card glass-card-amber rounded-xl p-4">
+          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Prerequisite Alert</h4>
+          <div className="p-3 rounded-lg mb-2" style={{ background: "rgba(245,87,108,0.06)", border: "1px solid rgba(245,87,108,0.15)" }}>
+            <p className="text-xs font-bold text-red-600 mb-1">Warning: Advanced React</p>
+            <p className="text-[11px] text-gray-600">"JavaScript Basics" not fully mastered by 12 students. Assigning Advanced React may cause confusion.</p>
+          </div>
+          <div className="flex gap-2">
+            <button className="flex-1 px-2 py-1.5 bg-orange-100 text-orange-700 text-[11px] font-semibold rounded-lg">Assign Prep Work</button>
+            <button className="flex-1 px-2 py-1.5 bg-gray-100 text-gray-600 text-[11px] font-semibold rounded-lg">Proceed Anyway</button>
+          </div>
+        </div>
+
+        {/* Revision Radar */}
+        <div className="glass-card glass-card-purple rounded-xl p-4">
+          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Revision Radar</h4>
+          <p className="text-[11px] text-gray-500 mb-2">Topics ranked by poor test performance</p>
+          <div className="space-y-1.5">
+            {[
+              { topic: "Closures", score: 42, color: "#f5576c" },
+              { topic: "Promises", score: 55, color: "#f4911a" },
+              { topic: "Array Methods", score: 61, color: "#f4911a" },
+              { topic: "DOM Manipulation", score: 78, color: "#43e97b" },
+            ].map((t, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="text-[11px] text-gray-700 w-24 truncate">{t.topic}</span>
+                <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="h-full rounded-full" style={{ width: `${t.score}%`, background: t.color }} />
+                </div>
+                <span className="text-[10px] font-bold" style={{ color: t.color }}>{t.score}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
         {statCards.map((stat, index) => (
           <div
             key={index}
