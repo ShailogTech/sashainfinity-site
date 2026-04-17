@@ -76,6 +76,19 @@ const StudentDashboard = () => {
 
   return (
     <div className="space-y-4">
+      {/* Wellness Monitor Banner */}
+      <div className="glass-card rounded-xl p-4 flex items-center gap-4" style={{ background: "rgba(200,100,150,0.06)", borderColor: "rgba(200,100,150,0.15)" }}>
+        <div style={{ background: "rgba(245,87,108,0.1)", padding: 10, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <IconClock size={22} style={{ color: "#f5576c" }} />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-gray-800">You've been learning for 2h 45m today</p>
+          <p className="text-xs text-gray-500">Great progress! Consider a 15-min break to recharge — your brain absorbs better with rest.</p>
+        </div>
+        <button className="text-xs font-bold text-white px-4 py-2 rounded-lg shrink-0" style={{ background: "#f5576c" }}>Take a Break</button>
+        <button className="text-xs font-semibold text-gray-400 px-2 py-2 shrink-0">Dismiss</button>
+      </div>
+
       {/* Bento Grid — Row 1: Continue Learning + Streak + Quick Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Continue Learning — Large card */}

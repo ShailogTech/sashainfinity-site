@@ -18,6 +18,7 @@ import AdminUsers from "@/pages/admin/AdminUsers";
 import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminDataPage from "@/pages/admin/AdminDataPage";
 import AdminSettings from "@/pages/admin/AdminSettings";
+import AdminAIFeatures from "@/pages/admin/AdminAIFeatures";
 import StudentLayout from "@/pages/student/StudentLayout";
 import StudentDashboard from "@/pages/student/StudentDashboard";
 import { StudentCourses, StudentAssignments, StudentGrades } from "@/pages/student/StudentPages";
@@ -71,6 +72,7 @@ function AppContent() {
           <Route path="coupons" element={<AdminDataPage pageKey="coupons" />} />
           <Route path="certificates" element={<AdminDataPage pageKey="certificates" />} />
           <Route path="blog" element={<AdminDataPage pageKey="blog" />} />
+          <Route path="ai-features" element={<AdminAIFeatures />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>

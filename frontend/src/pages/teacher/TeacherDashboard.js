@@ -185,6 +185,43 @@ const TeacherDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Video Heatmap Analytics */}
+      <div className="glass-card glass-card-rose rounded-xl p-6">
+        <h3 className="text-lg font-bold text-gray-800 mb-2">Video Heatmap — Drop-off Points</h3>
+        <p className="text-xs text-gray-500 mb-4">Shows where students stop watching, rewatch, or get confused</p>
+        <div className="space-y-3">
+          {[
+            { title: "React Hooks Deep Dive", duration: "18:24", dropoff: 42, rewatch: 68, confused: 31 },
+            { title: "State Management", duration: "22:10", dropoff: 55, rewatch: 45, confused: 22 },
+            { title: "Python Loops", duration: "15:30", dropoff: 38, rewatch: 72, confused: 48 },
+          ].map((v, i) => (
+            <div key={i} className="p-3 bg-white/40 rounded-lg">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-sm font-semibold text-gray-800">{v.title}</p>
+                <span className="text-xs text-gray-500">{v.duration}</span>
+              </div>
+              {/* Heatmap bar */}
+              <div className="relative h-6 rounded-full overflow-hidden bg-gray-100 mb-2">
+                <div className="absolute inset-0 flex">
+                  {Array.from({ length: 20 }, (_, j) => {
+                    const intensity = Math.sin((j / 20) * Math.PI) * 0.5 + Math.random() * 0.5;
+                    const isDropoff = j > 14;
+                    const isRewatch = j >= 6 && j <= 10;
+                    const color = isDropoff ? `rgba(245,87,108,${intensity})` : isRewatch ? `rgba(102,126,234,${intensity})` : `rgba(67,233,123,${intensity})`;
+                    return <div key={j} style={{ flex: 1, background: color }} />;
+                  })}
+                </div>
+              </div>
+              <div className="flex gap-4 text-[10px]">
+                <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" /> Drop-off: {v.dropoff}%</span>
+                <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-400 inline-block" /> Rewatch: {v.rewatch}%</span>
+                <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block" /> Confused: {v.confused}%</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

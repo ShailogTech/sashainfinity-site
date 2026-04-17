@@ -1252,3 +1252,46 @@ a { text-decoration: none; }
   .auth-input-wrap { padding: 0 12px; }
   .auth-input-wrap input { padding: 12px 0; font-size: 13px; }
 }
+
+/* ===== PARALLAX & DEPTH EFFECTS ===== */
+.sasha-about-section,
+.sasha-categories-section,
+.sasha-card-swap-section,
+.sasha-testimonial-section,
+.sasha-team-section,
+.sasha-blog-section {
+  position: relative;
+}
+.sasha-about-section::after,
+.sasha-categories-section::after,
+.sasha-testimonial-section::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, rgba(244,145,26,0.03) 0%, transparent 60%);
+}
+.sasha-team-section::after,
+.sasha-blog-section::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 100%, rgba(102,126,234,0.03) 0%, transparent 60%);
+}
+
+/* Smooth scroll-reveal animation */
+@keyframes scrollReveal {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.scroll-stack-card,
+.category-card,
+.team-card,
+.blog-card,
+.meiporul-feature-card,
+.ar-course-card,
+.course-card {
+  animation: scrollReveal 0.6s var(--sasha-ease) both;
+}
+.scroll-stack-card:nth-child(2), .category-card:nth-child(2), .team-card:nth-child(2), .blog-card:nth-child(2) { animation-delay: 0.08s; }
+.scroll-stack-card:nth-child(3), .category-card:nth-child(3), .team-card:nth-child(3), .blog-card:nth-child(3) { animation-delay: 0.16s; }
+.scroll-stack-card:nth-child(4), .category-card:nth-child(4), .team-card:nth-child(4) { animation-delay: 0.24s; }
+
+/* Depth layers for homepage sections */
+.sasha-stats-bar { transform: translateZ(0); will-change: transform; }
+.section-header { animation: scrollReveal 0.5s var(--sasha-ease) both; }

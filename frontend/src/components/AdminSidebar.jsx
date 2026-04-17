@@ -18,6 +18,7 @@ import {
   IconShoppingCart,
   IconTicket,
   IconCertificate,
+  IconRobot,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
@@ -54,6 +55,7 @@ export default function AdminSidebar() {
   ];
 
   const systemLinks = [
+    { label: "AI Features", href: "/admin/ai-features", icon: <IconRobot className={ICON_CLASS} /> },
     { label: "Blog", href: "/admin/blog", icon: <IconEdit className={ICON_CLASS} /> },
     { label: "Settings", href: "/admin/settings", icon: <IconSettings className={ICON_CLASS} /> },
     { label: "View Site", href: "/", icon: <IconWorld className={ICON_CLASS} /> },
