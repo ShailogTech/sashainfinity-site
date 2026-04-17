@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
 import { IconChalkboard, IconUsers, IconClipboardCheck, IconStar, IconCurrencyRupee } from "@tabler/icons-react";
+import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
+const engagementData = [
+  { week: "W1", attendance: 92, participation: 78 }, { week: "W2", attendance: 88, participation: 82 },
+  { week: "W3", attendance: 95, participation: 85 }, { week: "W4", attendance: 90, participation: 80 },
+  { week: "W5", attendance: 93, participation: 88 }, { week: "W6", attendance: 91, participation: 86 },
+];
+const earningsData = [
+  { month: "Jan", earnings: 18000 }, { month: "Feb", earnings: 22000 }, { month: "Mar", earnings: 25000 },
+  { month: "Apr", earnings: 28000 }, { month: "May", earnings: 30500 }, { month: "Jun", earnings: 32800 },
+];
 
 const TeacherDashboard = () => {
   const [stats, setStats] = useState({
@@ -131,21 +142,46 @@ const TeacherDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Student Engagement</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center text-gray-500">
-              <p>Chart visualization would go here</p>
-              <p className="text-sm">Attendance and participation</p>
-            </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={engagementData}>
+                <defs>
+                  <linearGradient id="attGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#667EEA" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#667EEA" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="partGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#43e97b" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#43e97b" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="week" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} unit="%" domain={[60, 100]} />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} />
+                <Area type="monotone" dataKey="attendance" stroke="#667EEA" strokeWidth={2} fill="url(#attGrad)" name="Attendance" />
+                <Area type="monotone" dataKey="participation" stroke="#43e97b" strokeWidth={2} fill="url(#partGrad)" name="Participation" />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
         <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Earnings Overview</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center text-gray-500">
-              <p>Chart visualization would go here</p>
-              <p className="text-sm">Revenue over time</p>
-            </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={earningsData}>
+                <defs>
+                  <linearGradient id="earnGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#f4911a" stopOpacity={0.9} />
+                    <stop offset="95%" stopColor="#f4911a" stopOpacity={0.4} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} tickFormatter={(v) => `₹${(v/1000).toFixed(0)}k`} />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} formatter={(v) => [`₹${v.toLocaleString()}`, "Earnings"]} />
+                <Bar dataKey="earnings" fill="url(#earnGrad)" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>

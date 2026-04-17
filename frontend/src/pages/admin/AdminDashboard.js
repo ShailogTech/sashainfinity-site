@@ -1,6 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { IconUsers, IconBookUpload, IconEdit, IconUserCheck, IconCurrencyRupee, IconUser, IconBook, IconArticle, IconCash } from "@tabler/icons-react";
+import {
+  IconUsers, IconBookUpload, IconEdit, IconUserCheck, IconCurrencyRupee,
+  IconUser, IconBook, IconArticle, IconCash, IconPlus, IconSettings, IconChartBar,
+} from "@tabler/icons-react";
+import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
+const userGrowthData = [
+  { month: "Jan", users: 820 }, { month: "Feb", users: 890 }, { month: "Mar", users: 960 },
+  { month: "Apr", users: 1020 }, { month: "May", users: 1100 }, { month: "Jun", users: 1250 },
+];
+const revenueData = [
+  { month: "Jan", revenue: 28000 }, { month: "Feb", revenue: 32000 }, { month: "Mar", revenue: 35000 },
+  { month: "Apr", revenue: 38500 }, { month: "May", revenue: 41200 }, { month: "Jun", revenue: 45600 },
+];
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
@@ -161,7 +174,7 @@ const AdminDashboard = () => {
                 key={activity.id}
                 className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                <div className="text-2xl">{getActivityIcon(activity.type)}</div>
+                <div className="bg-gray-100 text-gray-600 p-2 rounded-lg shrink-0">{getActivityIcon(activity.type)}</div>
                 <div className="flex-1">
                   <p className="text-sm text-gray-800">{activity.message}</p>
                   <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
@@ -176,28 +189,28 @@ const AdminDashboard = () => {
           <h3 className="text-lg font-bold text-gray-800 mb-4">Quick Actions</h3>
           <div className="grid grid-cols-1 gap-3">
             <button className="flex items-center gap-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl"></span>
+              <div className="bg-blue-500 text-white p-2 rounded-lg"><IconPlus size={20} /></div>
               <div>
                 <p className="font-medium text-gray-800">Add New Course</p>
                 <p className="text-sm text-gray-600">Create a new course</p>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl"></span>
+              <div className="bg-green-500 text-white p-2 rounded-lg"><IconUsers size={20} /></div>
               <div>
                 <p className="font-medium text-gray-800">Manage Users</p>
                 <p className="text-sm text-gray-600">View and manage users</p>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl"></span>
+              <div className="bg-purple-500 text-white p-2 rounded-lg"><IconEdit size={20} /></div>
               <div>
                 <p className="font-medium text-gray-800">Write Blog Post</p>
                 <p className="text-sm text-gray-600">Create new blog content</p>
               </div>
             </button>
             <button className="flex items-center gap-3 p-4 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors text-left">
-              <span className="text-2xl"></span>
+              <div className="bg-orange-500 text-white p-2 rounded-lg"><IconChartBar size={20} /></div>
               <div>
                 <p className="font-medium text-gray-800">View Analytics</p>
                 <p className="text-sm text-gray-600">See detailed reports</p>
@@ -209,27 +222,43 @@ const AdminDashboard = () => {
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* User Growth Chart */}
         <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">User Growth</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center text-gray-500">
-              <p className="mb-2"></p>
-              <p>Chart visualization would go here</p>
-              <p className="text-sm">Users over time</p>
-            </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={userGrowthData}>
+                <defs>
+                  <linearGradient id="userGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#667EEA" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#667EEA" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} />
+                <Area type="monotone" dataKey="users" stroke="#667EEA" strokeWidth={2.5} fill="url(#userGrad)" />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Revenue Chart */}
         <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Revenue Overview</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center text-gray-500">
-              <p className="mb-2"></p>
-              <p>Chart visualization would go here</p>
-              <p className="text-sm">Revenue over time</p>
-            </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={revenueData}>
+                <defs>
+                  <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#f4911a" stopOpacity={0.9} />
+                    <stop offset="95%" stopColor="#f4911a" stopOpacity={0.4} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} tickFormatter={(v) => `₹${(v/1000).toFixed(0)}k`} />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} formatter={(v) => [`₹${v.toLocaleString()}`, "Revenue"]} />
+                <Bar dataKey="revenue" fill="url(#revGrad)" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>

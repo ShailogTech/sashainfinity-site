@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import { IconBook, IconChecks, IconClipboardList, IconCertificate, IconClock } from "@tabler/icons-react";
+import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
+const learningData = [
+  { day: "Mon", hours: 2.5 }, { day: "Tue", hours: 1.8 }, { day: "Wed", hours: 3.2 },
+  { day: "Thu", hours: 2.1 }, { day: "Fri", hours: 4.0 }, { day: "Sat", hours: 1.5 }, { day: "Sun", hours: 0.8 },
+];
+const skillData = [
+  { skill: "React", score: 78 }, { skill: "Python", score: 45 }, { skill: "CSS", score: 92 },
+  { skill: "Node", score: 60 }, { skill: "SQL", score: 35 },
+];
 
 const StudentDashboard = () => {
   const [stats, setStats] = useState({
@@ -127,21 +137,35 @@ const StudentDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Learning Activity</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center text-gray-500">
-              <p>Chart visualization would go here</p>
-              <p className="text-sm">Hours learned over time</p>
-            </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={learningData}>
+                <defs>
+                  <linearGradient id="learnGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#43e97b" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#43e97b" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} unit="h" />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} />
+                <Area type="monotone" dataKey="hours" stroke="#43e97b" strokeWidth={2.5} fill="url(#learnGrad)" />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
         <div className="glass-card rounded-xl p-6 hover:-translate-y-1 transition-all duration-300">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Achievements</h3>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center text-gray-500">
-              <p>Badges and certificates</p>
-              <p className="text-sm">Earned so far</p>
-            </div>
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Skill Progress</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={skillData} layout="vertical">
+                <XAxis type="number" domain={[0, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#9ca3af" }} unit="%" />
+                <YAxis type="category" dataKey="skill" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#6b7280" }} width={50} />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.1)" }} />
+                <Bar dataKey="score" fill="#667EEA" radius={[0, 8, 8, 0]} barSize={20} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
